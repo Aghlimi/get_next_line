@@ -6,20 +6,22 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 22:27:34 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/01 22:33:31 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void ft_fromnl(char* buffer){
-	int nl;
+void	ft_fromnl(char *buffer)
+{
+	int	nl;
+
 	nl = firstnl(buffer);
-	if(nl == -1)
-		{
-			buffer[0] = 0;
-			return ;
-		}
+	if (nl == -1)
+	{
+		buffer[0] = 0;
+		return ;
+	}
 	ft_memmove(buffer, buffer + firstnl(buffer), ft_strlen(buffer) + 1);
 }
 
@@ -27,9 +29,7 @@ char	*ft_read(int fd, char *buffer, char *result)
 {
 	char	*xd3ndkblati;
 	char	*xd3ndkblati7tanta;
-	int		moved;
 
-	moved = 0;
 	while (read(fd, buffer, BUFFER_SIZE) > 0)
 	{
 		xd3ndkblati = result;
@@ -64,18 +64,4 @@ char	*get_next_line(int fd)
 	if ((result && !ft_strchr(result, 10)) || !result)
 		result = ft_read(fd, buffer, result);
 	return (result);
-}
-
-int	main(void)
-{
-	char	*line;
-	int		fd;
-
-	fd = open("f", O_RDONLY);
-	if (fd < 0)
-	{
-		perror("fd");
-	}
-
-	return (0);
 }
