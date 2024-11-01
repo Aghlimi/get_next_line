@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:54:05 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 22:19:45 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/01 22:15:20 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 int		ft_str_len(const char *text);
