@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 22:33:31 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/01 22:47:31 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*ft_read(int fd, char *buffer, char *result)
 			return (free(xd3ndkblati7tanta), free(xd3ndkblati), NULL);
 		free((free(xd3ndkblati), xd3ndkblati7tanta));
 		if (ft_strchr(result, 10))
-			return (result);
+			break ;
 	}
 	ft_fromnl(buffer);
 	return (result);
@@ -55,7 +55,6 @@ char	*get_next_line(int fd)
 	result = NULL;
 	if (ft_strlen(buffer))
 	{
-		printf("%s\n", buffer);
 		result = ft_tonl(buffer);
 		if (!result)
 			return (NULL);
