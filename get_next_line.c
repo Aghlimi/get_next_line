@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: aghlimi <aghlimi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 14:26:45 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/01 21:40:41 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_str_len(const char *text)
 			i++;
 	return (i);
 }
-char	*addchar(char *text, char c)
+static char	*ft_addchar(char *text, char c)
 {
 	int		i;
 	char	*result;
@@ -54,7 +54,7 @@ char	*ft_tonl(char *text)
 	result = NULL;
 	while (text[i])
 	{
-		result = addchar(result, text[i]);
+		result = ft_addchar(result, text[i]);
 		if (!result)
 			return (NULL);
 		if (text[i++] == 10)
@@ -63,54 +63,49 @@ char	*ft_tonl(char *text)
 	return (result);
 }
 
-char	*ft_fromnl(char *text)
+int	firstnl(char *text)
 {
-	char	*d;
+	int	i;
 
-	d = ft_strchr(text, 10);
-	if (d)
-		d++;
-	return (d);
+	i = 0;
+	while (text[i])
+	{
+		if (text[i++] == 10)
+			return (i);
+	}
+	return (-1);
 }
 
 char	*get_next_line(int fd)
 {
-	static char		*mem;
-	static ssize_t	readed;
-	static int		started;
-	char			buffer[BUFFER_SIZE + 1];
-	char			*result;
+	static char	buffer[BUFFER_SIZE + 1];
+	char		*result;
+	char		*xd3ndkblati;
+	char		*xd3ndkblati7tanta;
 
-	char *d, *n;
 	result = NULL;
-	if (mem)
+	if (ft_strlen(buffer))
 	{
-		result = ft_tonl(mem);
+		result = ft_tonl(buffer);
 		if (!result)
 			return (NULL);
+		ft_memmove(buffer, buffer + firstnl(buffer), ft_strlen(buffer) + 1);
 	}
-	if (!(started && readed) && (!result || (result && result[ft_strlen(result)
-				- 1] != 10)))
-	{
-		while ((readed = read(fd, buffer, BUFFER_SIZE)) > 0)
+	if ((result && !ft_strchr(result, 10)) || !result)
+		while (read(fd, buffer, BUFFER_SIZE) > 0)
 		{
-			started = 1;
-			d = ft_tonl(buffer);
-			n = result;
-			if (!d)
-				return (NULL);
-			result = ft_strjoin(result, d);
-			free(n);
-			free(d);
-			if (ft_strchr(result,10))
-			{
-				mem = ft_fromnl(buffer);
-				break ;
-			}
+			xd3ndkblati = result;
+			xd3ndkblati7tanta = ft_tonl(buffer);
+			if (!xd3ndkblati7tanta)
+				return (free(xd3ndkblati), NULL);
+			result = ft_strjoin(result, xd3ndkblati7tanta);
+			if (!result)
+				return (free(xd3ndkblati7tanta), free(xd3ndkblati), NULL);
+			free((free(xd3ndkblati),xd3ndkblati7tanta));
+			if (ft_strchr(result, 10))
+				return (ft_memmove(buffer, buffer + firstnl(buffer),
+						ft_strlen(buffer) + 1), result);
 		}
-	}
-	else if (mem)
-		mem = ft_fromnl(mem);
 	return (result);
 }
 int	main(int argc, char const *argv[])
@@ -125,10 +120,10 @@ int	main(int argc, char const *argv[])
 	}
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
-	// while ((line = get_next_line(fd)) != NULL)
-	// {
-	// 	printf("%s", line);
-	// 	free(line);
-	// }
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
 	return (0);
 }
