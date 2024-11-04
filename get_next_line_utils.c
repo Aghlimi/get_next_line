@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:56:35 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/04 13:36:55 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/04 21:09:53 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,48 @@ int	ft_str_len(const char *text)
 	return (i);
 }
 
-char	*ft_addchar(char *text, char c)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*result;
-	int i = 0;
+	char	*str;
+	int		i;
+	int		j;
 
-	result = malloc(ft_str_len(text) + 2);
-	if (result == NULL)
+	str = malloc(ft_str_len(s1) + ft_str_len(s2) + 1);
+	if (!str)
 		return (NULL);
-	if (text)
+	i = 0;
+	j = 0;
+	if (s1)
 	{
-		while (text[i])
+		while (s1[i])
 		{
-			result[i] = text[i];
-			i ++;
+			str[i] = s1[i];
+			i++;
 		}
-		free(text);
 	}
-	result[i++] = c;
-	result[i] = 0;
-	return (result);
+	if (s2)
+		while (s2[j])
+			str[i++] = s2[j++];
+	str[i] = 0;
+	return (str);
 }
 
 char	*ft_tonl(char *text)
 {
 	int		i;
+	int		nl;
 	char	*result;
 
+	nl = firstnl(text);
 	i = 0;
-	result = NULL;
-	while (text[i])
+	if (nl == -1)
+		nl = ft_str_len(text);
+	result = malloc(nl + 1);
+	result[nl] = 0;
+	while (i < nl)
 	{
-		result = ft_addchar(result, text[i]);
-		if (!result)
-			return (NULL);
-		if (text[i++] == 10)
-			return (result);
+		result[i] = text[i];
+		i++;
 	}
 	return (result);
 }

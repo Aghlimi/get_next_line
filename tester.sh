@@ -1,9 +1,9 @@
-#!/usr/bin/bash
-list=$(find . -type f);
+#!/bin/bash
+list=$(find files -type f);
 rm -rf tests.txt
 for item in ${list[@]}; do
-    echo ============$item============= >> tests.txt
+    echo ============$item============= #>> tests.txt
     ./a.out $item > t
-    diff t $item >> tests.txt
+    diff t $item # >> tests.txt
 done
 rm -rf t

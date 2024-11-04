@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/04 13:47:15 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/04 21:09:31 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,42 +20,13 @@ void	ft_fromnl(char *buffer)
 	i = 0;
 	nl = firstnl(buffer);
 	if (nl == -1)
-	{
 		buffer[0] = 0;
-		return ;
-	}
-	while (buffer[nl])
+	else
 	{
-		buffer[i++] = buffer[nl++];
+		while (buffer[nl])
+			buffer[i++] = buffer[nl++];
+		buffer[i] = 0;
 	}
-	buffer[i] = 0;
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	str = malloc(ft_str_len(s1) + ft_str_len(s2) + 1);
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	if (s1)
-	{
-		while (s1[i])
-		{
-			str[i] = str[i];
-			i++;
-		}
-	}
-	i = ft_str_len(str);
-	if (s2)
-		while (s2[j])
-			str[i++] = s2[j++];
-	str[i] = 0;
-	return (str);
 }
 
 char	*ft_read(int fd, char *buffer, char *result)
