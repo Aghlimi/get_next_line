@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/04 21:09:31 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/04 23:44:40 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ char	*ft_read(int fd, char *buffer, char *result)
 	ssize_t	n;
 
 	n = read(fd, buffer, BUFFER_SIZE);
+	printf("n=%d\n",n);
 	while (n > 0)
 	{
+		
 		buffer[n] = 0;
 		r = result;
 		tonl = ft_tonl(buffer);
@@ -59,7 +61,7 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*result;
-
+printf("%ld\n",sizeof(buffer));
 	result = NULL;
 	if (ft_str_len(buffer))
 	{
