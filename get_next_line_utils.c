@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:56:35 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 22:13:38 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:36:55 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,22 @@ int	ft_str_len(const char *text)
 char	*ft_addchar(char *text, char c)
 {
 	char	*result;
+	int i = 0;
 
-	result = ft_calloc(ft_str_len(text) + 2, 1);
+	result = malloc(ft_str_len(text) + 2);
 	if (result == NULL)
 		return (NULL);
 	if (text)
 	{
-		ft_memmove(result, text, ft_str_len(text));
+		while (text[i])
+		{
+			result[i] = text[i];
+			i ++;
+		}
 		free(text);
 	}
-	result[ft_str_len(result)] = c;
+	result[i++] = c;
+	result[i] = 0;
 	return (result);
 }
 

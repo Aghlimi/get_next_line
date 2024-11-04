@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:54:05 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/01 22:19:45 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:34:00 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int		ft_str_len(const char *text);
 char	*ft_addchar(char *text, char c);
 char	*ft_tonl(char *text);
 int		firstnl(char *text);
-
+char	*get_next_line(int fd);
 #endif

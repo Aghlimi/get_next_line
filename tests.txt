@@ -1,0 +1,4309 @@
+============./Makefile=============
+1c1
+< YÂXCC = cc 
+---
+> CC = cc 
+4c4
+< YÂXt.a
+---
+> OBJ = libft.a
+10,11c10,11
+< ZÂX(EXEC): clean $(OBJ) $(SRC)
+< JFDFÑU(OBJ) $(SRC) 
+---
+> $(EXEC): clean $(OBJ) $(SRC)
+> 	$(CC) -o $@ $(OBJ) $(SRC) 
+============./get_next_line.c=============
+1,11c1,11
+< *********************************** */
+< ·%Êb                                 */
+< ·%Êb          :::      ::::::::   */
+< ·%Êb     :+:      :+:    :+:   */
+< ·%Êb+:+ +:+         +:+     */
+< +:+       +#+        */
+< ‚%Êb+   +#+           */
+< ‚%Êb+#             */
+< ‚%Êb##.fr       */
+< ‚%Êb         */
+< ≤∏***** */
+---
+> /* ************************************************************************** */
+> /*                                                                            */
+> /*                                                        :::      ::::::::   */
+> /*   get_next_line.c                                    :+:      :+:    :+:   */
+> /*                                                    +:+ +:+         +:+     */
+> /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> /*                                                +#+#+#+#+#+   +#+           */
+> /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
+> /*   Updated: 2024/11/04 13:47:15 by aghlimi          ###   ########.fr       */
+> /*                                                                            */
+> /* ************************************************************************** */
+15c15
+< 7∏	ft_fromnl(char *buffer)
+---
+> void	ft_fromnl(char *buffer)
+18c18
+< ·%Êb;
+---
+> 	int	i;
+22c22
+< ·%Êb== -1)
+---
+> 	if (nl == -1)
+27c27
+< ·%Êbwhile (buffer[nl])
+---
+> 	while (buffer[nl])
+29c29
+< ∏er[nl++];
+---
+> 		buffer[i++] = buffer[nl++];
+34c34
+< °6∏trjoin(char const *s1, char const *s2)
+---
+> char	*ft_strjoin(char const *s1, char const *s2)
+36c36
+< ·%Êbchar	*str;
+---
+> 	char	*str;
+40,41c40,41
+< ·%Êbc(ft_str_len(s1) + ft_str_len(s2) + 1);
+< ·%Êbf (!str)
+---
+> 	str = malloc(ft_str_len(s1) + ft_str_len(s2) + 1);
+> 	if (!str)
+45c45
+< "7∏	if (s1)
+---
+> 	if (s1)
+49c49
+< ‚%Êb= str[i];
+---
+> 			str[i] = str[i];
+53c53
+< ·%Êbtr);
+---
+> 	i = ft_str_len(str);
+56c56
+< ‚%Êb= s2[j++];
+---
+> 			str[i++] = s2[j++];
+61c61
+< ·%Êbresult)
+---
+> char	*ft_read(int fd, char *buffer, char *result)
+65c65
+< ·%Êbn;
+---
+> 	ssize_t	n;
+68c68
+< ‚%Êbhile (n > 0)
+---
+> 	while (n > 0)
+71c71
+< ·%Êbult;
+---
+> 		r = result;
+73c73
+< ·%Êb)
+---
+> 		if (!tonl)
+75c75
+< 7∏_strjoin(result, tonl);
+---
+> 		result = ft_strjoin(result, tonl);
+77,79c77,79
+< 7∏return (free(tonl), free(r), NULL);
+< ∏((free(r), tonl));
+< a6∏(result) - 1] == '\n')
+---
+> 			return (free(tonl), free(r), NULL);
+> 		free((free(r), tonl));
+> 		if (result[ft_str_len(result) - 1] == '\n')
+81c81
+< 7∏ad(fd, buffer, BUFFER_SIZE);
+---
+> 		n = read(fd, buffer, BUFFER_SIZE);
+83c83
+< ·%Êb(buffer);
+---
+> 	ft_fromnl(buffer);
+87c87
+< ∏ext_line(int fd)
+---
+> char	*get_next_line(int fd)
+89c89
+< ∏FER_SIZE + 1];
+---
+> 	static char	buffer[BUFFER_SIZE + 1];
+92c92
+< ·%ÊbNULL;
+---
+> 	result = NULL;
+95c95
+< Ú6∏ = ft_tonl(buffer);
+---
+> 		result = ft_tonl(buffer);
+97c97
+< ·%Êbrn (NULL);
+---
+> 			return (NULL);
+100,101c100,101
+< ≤∏ '\n') || !result)
+< °6∏buffer, result);
+---
+> 	if ((result && result[ft_str_len(result) - 1] != '\n') || !result)
+> 		result = ft_read(fd, buffer, result);
+============./get_next_line.h=============
+1,11c1,11
+< *********************************** */
+< ËVlU                                 */
+< ËVlU          :::      ::::::::   */
+< ËVlU     :+:      :+:    :+:   */
+< ËVlU+:+ +:+         +:+     */
+< +:+       +#+        */
+< ÈVlU+   +#+           */
+< ÈVlU+#             */
+< ÈVlU##.fr       */
+< ÈVlU         */
+< π¬êSU***** */
+---
+> /* ************************************************************************** */
+> /*                                                                            */
+> /*                                                        :::      ::::::::   */
+> /*   get_next_line.h                                    :+:      :+:    :+:   */
+> /*                                                    +:+ +:+         +:+     */
+> /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> /*                                                +#+#+#+#+#+   +#+           */
+> /*   Created: 2024/11/01 21:54:05 by aghlimi           #+#    #+#             */
+> /*   Updated: 2024/11/04 13:34:00 by aghlimi          ###   ########.fr       */
+> /*                                                                            */
+> /* ************************************************************************** */
+14c14
+< ˘’êSU GET_NEXT_LINE_H
+---
+> # define GET_NEXT_LINE_H
+16c16
+< ÈVlUlude <fcntl.h>
+---
+> # include <fcntl.h>
+18c18
+< ÈVlUde <stdlib.h>
+---
+> # include <stdlib.h>
+20c20
+< ËVlUf BUFFER_SIZE
+---
+> # ifndef BUFFER_SIZE
+22c22
+< ÈVlUndif
+---
+> # endif
+25,27c25,27
+< 	‘êSUhar	*ft_addchar(char *text, char c);
+< ˘’êSU*ft_tonl(char *text);
+< ˘’êSUext);
+---
+> char	*ft_addchar(char *text, char c);
+> char	*ft_tonl(char *text);
+> int		firstnl(char *text);
+============./libft.h=============
+1,15c1,11
+< *********************************** */
+< 
+< Ô Z                                 */
+< 
+< Ô Z          :::      ::::::::   */
+< 
+< Ô Z     :+:      :+:    :+:   */
+< 
+< Ô Z+:+ +:+         +:+     */
+< +:+       +#+        */
+< Ô Z+   +#+           */
+< Ô Z+#             */
+< Ô Z##.fr       */
+< Ô Z         */
+< [[–TßU***** */
+---
+> /* ************************************************************************** */
+> /*                                                                            */
+> /*                                                        :::      ::::::::   */
+> /*   libft.h                                            :+:      :+:    :+:   */
+> /*                                                    +:+ +:+         +:+     */
+> /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> /*                                                +#+#+#+#+#+   +#+           */
+> /*   Created: 2024/10/21 13:19:04 by aghlimi           #+#    #+#             */
+> /*   Updated: 2024/10/27 12:01:43 by aghlimi          ###   ########.fr       */
+> /*                                                                            */
+> /* ************************************************************************** */
+18c14
+< Ô Z
+---
+> # define LIBFT_H
+21c17
+< ÀM–TßU# include <unistd.h>
+---
+> # include <unistd.h>
+23c19
+< Ô Zt
+---
+> typedef struct s_list
+26c22
+< Ô Z;
+---
+> 	struct s_list	*next;
+28,30c24,25
+< ÍM–TßU
+< 
+< Ô Zize);
+---
+> int					ft_isprint(int c);
+> void				*ft_calloc(size_t count, size_t size);
+32,40c27,33
+< ÍM–TßUist				*ft_lstlast(t_list *lst);
+< 
+< Ô Zt_lstadd_back(t_list **lst, t_list *new);
+< ÎM–TßUt_list				*ft_lstnew(void *content);
+< [[–TßUoid *));
+< [[–TßU void (*del)(void *));
+< JL–TßUt_list *lst, void (*f)(void *));
+< 
+< Ô Z),
+---
+> t_list				*ft_lstlast(t_list *lst);
+> void				ft_lstadd_back(t_list **lst, t_list *new);
+> t_list				*ft_lstnew(void *content);
+> void				ft_lstdelone(t_list *lst, void (*del)(void *));
+> void				ft_lstclear(t_list **lst, void (*del)(void *));
+> void				ft_lstiter(t_list *lst, void (*f)(void *));
+> t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+42,46c35,39
+< ÍM–TßUputnbr_fd(int n, int fd);
+< ˙[–TßUlen(const char *s);
+< ˙[–TßUchar c, int fd);
+< JL–TßUconst *s1, char const *s2);
+< JL–TßU;
+---
+> void				ft_putnbr_fd(int n, int fd);
+> size_t				ft_strlen(const char *s);
+> void				ft_putchar_fd(char c, int fd);
+> char				*ft_strjoin(char const *s1, char const *s2);
+> void				*ft_memcpy(void *dst, const void *src, size_t n);
+48c41
+< [[–TßUize_t len);
+---
+> char				*ft_substr(char const *s, unsigned int start, size_t len);
+50,51c43
+< ÎM–TßU					ft_isalnum(int c);
+< L–TßU(int c);
+---
+> int					ft_isalnum(int c);
+53,70c45,61
+< 
+< Ô Z		*ft_memset(void *b, int c, size_t len);
+< [[–TßUsrc, size_t n);
+< ÎM–TßUsize_t n);
+< [[–TßUconst void *src, size_t len);
+< [[–TßUt dstsize);
+< [[–TßU, const char *src, size_t dstsize);
+< L–TßU		ft_toupper(int c);
+< L–TßUt c);
+< JL–TßUt c, size_t n);
+< JL–TßUhar *s, int c);
+< JL–TßUchar *s, int c);
+< [[–TßUchar *s1, const char *s2, size_t n);
+< [[–TßU2, size_t n);
+< [[–TßUar *haystack, const char *needle,
+< 
+< Ô Zze_t len);
+< ˙[–TßU);
+---
+> int					ft_isascii(int c);
+> void				*ft_memset(void *b, int c, size_t len);
+> void				*ft_memcpy(void *dst, const void *src, size_t n);
+> void				ft_bzero(void *s, size_t n);
+> void				*ft_memmove(void *dst, const void *src, size_t len);
+> size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+> size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
+> int					ft_toupper(int c);
+> int					ft_tolower(int c);
+> void				*ft_memchr(const void *s, int c, size_t n);
+> char				*ft_strchr(const char *s, int c);
+> char				*ft_strrchr(const char *s, int c);
+> int					ft_strncmp(const char *s1, const char *s2, size_t n);
+> int					ft_memcmp(const void *s1, const void *s2, size_t n);
+> char				*ft_strnstr(const char *haystack, const char *needle,
+> 						size_t len);
+> int					ft_atoi(const char *str);
+72,83c63,73
+< ˙[–TßU		ft_putstr_fd(char *s, int fd);
+< äL–TßU*ft_split(char const *s, char c);
+< äL–TßUft_putendl_fd(char *s, int fd);
+< 
+< [[–TßU, char *));
+< [[–TßU *s, char (*f)(unsigned int, char));
+< ÎM–TßU			*ft_itoa(int n);
+< ÎM–TßUst char *s1);
+< [[–TßU void (*f)(unsigned int, char *));
+< 
+< Ô Zet);
+< JL–TßU t_list *new);
+---
+> void				ft_putstr_fd(char *s, int fd);
+> char				**ft_split(char const *s, char c);
+> void				ft_putendl_fd(char *s, int fd);
+> 
+> void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+> char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+> char				*ft_itoa(int n);
+> char				*ft_strdup(const char *s1);
+> void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+> char				*ft_strtrim(char const *s1, char const *set);
+> void				ft_lstadd_front(t_list **lst, t_list *new);
+============./libft.a=============
+Binary files t and ./libft.a differ
+============./get_next_line_utils.c=============
+1,11c1,11
+< *********************************** */
+< —\                                 */
+< —\          :::      ::::::::   */
+< —\     :+:      :+:    :+:   */
+< —\+:+ +:+         +:+     */
+< +:+       +#+        */
+< “\+   +#+           */
+< “\+#             */
+< “\##.fr       */
+< “\         */
+< Ç%Ì\ U***** */
+---
+> /* ************************************************************************** */
+> /*                                                                            */
+> /*                                                        :::      ::::::::   */
+> /*   get_next_line_utils.c                              :+:      :+:    :+:   */
+> /*                                                    +:+ +:+         +:+     */
+> /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> /*                                                +#+#+#+#+#+   +#+           */
+> /*   Created: 2024/11/01 21:56:35 by aghlimi           #+#    #+#             */
+> /*   Updated: 2024/11/04 13:36:55 by aghlimi          ###   ########.fr       */
+> /*                                                                            */
+> /* ************************************************************************** */
+15c15
+< 1Ì\ Uft_str_len(const char *text)
+---
+> int	ft_str_len(const char *text)
+19c19
+< —\ = 0;
+---
+> 	i = 0;
+22c22
+< —\
+---
+> 			i++;
+26c26
+< 1Ì\ Uxt, char c)
+---
+> char	*ft_addchar(char *text, char c)
+31,32c31,32
+< —\	result = malloc(ft_str_len(text) + 2);
+< “\f (result == NULL)
+---
+> 	result = malloc(ft_str_len(text) + 2);
+> 	if (result == NULL)
+34c34
+< —\ext)
+---
+> 	if (text)
+38c38
+< ¬Ì\ U = text[i];
+---
+> 			result[i] = text[i];
+43c43
+< qÌ\ U	result[i++] = c;
+---
+> 	result[i++] = c;
+45c45
+< “\(result);
+---
+> 	return (result);
+50c50
+< —\int		i;
+---
+> 	int		i;
+54c54
+< —\NULL;
+---
+> 	result = NULL;
+57c57
+< QÌ\ Udchar(result, text[i]);
+---
+> 		result = ft_addchar(result, text[i]);
+59c59
+< —\return (NULL);
+---
+> 			return (NULL);
+61c61
+< —\eturn (result);
+---
+> 			return (result);
+66c66
+< ¬Ì\ Ut	firstnl(char *text)
+---
+> int	firstnl(char *text)
+71c71
+< —\while (text[i])
+---
+> 	while (text[i])
+74c74
+< ·%Ì\ U			return (i);
+---
+> 			return (i);
+============./.git/info/exclude=============
+1,4c1,4
+< t/info/exclude
+< zƒK–fU are comments.
+< :g8V, the following would be a good set of
+< :g8Vt to use them):
+---
+> # git ls-files --others --exclude-from=.git/info/exclude
+> # Lines that start with '#' are comments.
+> # For a project mostly in C, the following would be a good set of
+> # exclude patterns (uncomment them if you want to use them):
+============./.git/hooks/fsmonitor-watchman.sample=============
+1c1
+< #[#!/usr/bin/perl
+---
+> #!/usr/bin/perl
+4c4
+< 
+---
+> use warnings;
+7,8c7,8
+<  to integrate Watchman
+< º∆sk∑U detecting
+---
+> # An example hook script to integrate Watchman
+> # (https://facebook.github.io/watchman/) with git to speed up detecting
+11,14c11,14
+< #[and last update token
+< L∆sk∑Uen and
+< #[ since the update token. Paths must
+< d separated by a single NUL.
+---
+> # The hook is passed a version (currently 2) and last update token
+> # formatted as a string and outputs to stdout a new update token and
+> # all files that have been modified since the update token. Paths must
+> # be relative to the root of the working tree and separated by a single NUL.
+16,17c16,17
+< #[chman" and set
+< #[r .git/hooks/query-watchman'
+---
+> # To enable this hook, rename this file to "query-watchman" and set
+> # 'git config core.fsmonitor .git/hooks/query-watchman'
+19c19
+< L∆sk∑Un, $last_update_token) = @ARGV;
+---
+> my ($version, $last_update_token) = @ARGV;
+21,22c21,22
+< å∆sk∑Unt for debugging
+< L∆sk∑Uon $last_update_token\n";
+---
+> # Uncomment for debugging
+> # print STDERR "$0 $version $last_update_token\n";
+24c24
+< å∆sk∑Uk interface version
+---
+> # Check the hook interface version
+26,27c26,27
+< #[ion '$version'.\n" .
+< L¡sk∑U scanning...\n";
+---
+> 	die "Unsupported query-fsmonitor hook version '$version'.\n" .
+> 	    "Falling back to scanning...\n";
+30c30
+< L¡sk∑Ut_working_dir();
+---
+> my $git_work_tree = get_working_dir();
+34c34
+< #[_pkg;
+---
+> my $json_pkg;
+37c37
+< L¡sk∑U = "JSON::XS";
+---
+> 	$json_pkg = "JSON::XS";
+40c40
+< #[::PP;
+---
+> 	require JSON::PP;
+44c44
+< #[watchman();
+---
+> launch_watchman();
+47,49c47,49
+< å∆sk∑U= watchman_query();
+< å∆sk∑Uhed($o)) {
+< º∆sk∑U$o->{files}});
+---
+> 	my $o = watchman_query();
+> 	if (is_work_tree_watched($o)) {
+> 		output_result($o->{clock}, @{$o->{files}});
+54c54
+< ∆sk∑Umy ($clockid, @files) = @_;
+---
+> 	my ($clockid, @files) = @_;
+56,59c56,59
+< º∆sk∑Ufor debugging watchman output
+< º∆sk∑U$fh, ">", ".git/watchman-output.out");
+< L¡sk∑Ubinmode $fh, ":utf8";
+< L¡sk∑Uid\n@files\n";
+---
+> 	# Uncomment for debugging watchman output
+> 	# open (my $fh, ">", ".git/watchman-output.out");
+> 	# binmode $fh, ":utf8";
+> 	# print $fh "$clockid\n@files\n";
+62c62
+< L¡sk∑UOUT, ":utf8";
+---
+> 	binmode STDOUT, ":utf8";
+64c64
+< #[;
+---
+> 	print "\0";
+69,72c69,72
+< #[watchman_clock {
+< º∆sk∑Uan clock "$git_work_tree"/;
+< #[o get clock id on '$git_work_tree'.\n" .
+< #[0;
+---
+> sub watchman_clock {
+> 	my $response = qx/watchman clock "$git_work_tree"/;
+> 	die "Failed to get clock id on '$git_work_tree'.\n" .
+> 		"Falling back to scanning...\n" if $? != 0;
+74c74
+< º∆sk∑Uresponse);
+---
+> 	return $json_pkg->new->utf8->decode($response);
+78,80c78,80
+< #[ -j --no-pretty')
+< ∆sk∑U $!\n" .
+< ∆sk∑U
+---
+> 	my $pid = open2(\*CHLD_OUT, \*CHLD_IN, 'watchman -j --no-pretty')
+> 	or die "open2() failed: $!\n" .
+> 	"Falling back to scanning...\n";
+82,83c82,83
+< #[sking for names of files that
+< #[git folder.
+---
+> 	# In the query expression below we're asking for names of files that
+> 	# changed since $last_update_token but not from the .git folder.
+85,90c85,90
+< #[e using the "since" generator to use the
+< #[and "fields" to limit the
+< sion" term to
+< å∆sk∑Uults.
+< º∆sk∑U) eq "c") {
+< º∆sk∑Ut_update_token\"";
+---
+> 	# To accomplish this, we're using the "since" generator to use the
+> 	# recency index to select candidate nodes and "fields" to limit the
+> 	# output to file names only. Then we're using the "expression" term to
+> 	# further constrain the results.
+> 	if (substr($last_update_token, 0, 1) eq "c") {
+> 		$last_update_token = "\"$last_update_token\"";
+92c92
+< #[";
+---
+> 	my $query = <<"	END";
+94,96c94,96
+< å∆sk∑Uce": $last_update_token,
+< #[me"],
+< º∆sk∑U ".git"]]
+---
+> 			"since": $last_update_token,
+> 			"fields": ["name"],
+> 			"expression": ["not", ["dirname", ".git"]]
+100,102c100,102
+< º∆sk∑Ugging the watchman query
+< º∆sk∑U">", ".git/watchman-query.json");
+< #[ $fh $query;
+---
+> 	# Uncomment for debugging the watchman query
+> 	# open (my $fh, ">", ".git/watchman-query.json");
+> 	# print $fh $query;
+105c105
+< #[ $query;
+---
+> 	print CHLD_IN $query;
+107c107
+< º∆sk∑Uo {local $/; <CHLD_OUT>};
+---
+> 	my $response = do {local $/; <CHLD_OUT>};
+109,111c109,111
+< º∆sk∑Ur debugging the watch response
+< #[h, ">", ".git/watchman-response.json");
+< ∆sk∑U print $fh $response;
+---
+> 	# Uncomment for debugging the watch response
+> 	# open ($fh, ">", ".git/watchman-response.json");
+> 	# print $fh $response;
+114,117c114,117
+< #[.
+< #[ponse eq "";
+< ¸∆sk∑Uned invalid output: $response\n" .
+< ¸∆sk∑U =~ /^\{/;
+---
+> 	die "Watchman: command returned no output.\n" .
+> 	"Falling back to scanning...\n" if $response eq "";
+> 	die "Watchman: command returned invalid output: $response\n" .
+> 	"Falling back to scanning...\n" unless $response =~ /^\{/;
+119c119
+< L∆sk∑Udecode($response);
+---
+> 	return $json_pkg->new->utf8->decode($response);
+122c122
+< å∆sk∑Uched {
+---
+> sub is_work_tree_watched {
+124,130c124,130
+< å∆sk∑Uutput->{error};
+< #[ directory (.*) is not watched/) {
+< #[y--;
+< L∆sk∑Ugit_work_tree"/;
+< ¸∆sk∑Uchman watch '$git_work_tree'.\n" .
+< #[
+< #[$response);
+---
+> 	my $error = $output->{error};
+> 	if ($retry > 0 and $error and $error =~ m/unable to resolve root .* directory (.*) is not watched/) {
+> 		$retry--;
+> 		my $response = qx/watchman watch "$git_work_tree"/;
+> 		die "Failed to make watchman watch '$git_work_tree'.\n" .
+> 		    "Falling back to scanning...\n" if $? != 0;
+> 		$output = $json_pkg->new->utf8->decode($response);
+132,133c132,133
+< ∆sk∑U	die "Watchman: $error.\n" .
+< L∆sk∑Uck to scanning...\n" if $error;
+---
+> 		die "Watchman: $error.\n" .
+> 		"Falling back to scanning...\n" if $error;
+135,136c135,136
+< L∆sk∑Ument for debugging watchman output
+< #[);
+---
+> 		# Uncomment for debugging watchman output
+> 		# open (my $fh, ">", ".git/watchman-output.out");
+139,142c139,142
+< ¸∆sk∑Us return all files on the first query so
+< ¸∆sk∑Ulag to git and do the
+< L∆sk∑Uy
+< #[vidual file.
+---
+> 		# Watchman will always return all files on the first query so
+> 		# return the fast "everything is dirty" flag to git and do the
+> 		# Watchman query just to get it over with now so we won't pay
+> 		# the cost in git to look up each individual file.
+144c144
+< ∆sk∑U	$error = $output->{error};
+---
+> 		$error = $output->{error};
+146,147c146,147
+< L¡sk∑Uan: $error.\n" .
+< º∆sk∑Ung...\n" if $error;
+---
+> 		die "Watchman: $error.\n" .
+> 		"Falling back to scanning...\n" if $error;
+149,150c149,150
+< å∆sk∑Uclock}, ("/"));
+< ∆sk∑U>{clock};
+---
+> 		output_result($o->{clock}, ("/"));
+> 		$last_update_token = $o->{clock};
+153c153
+< #[	return 0;
+---
+> 		return 0;
+156,157c156,157
+< ∆sk∑U.
+< #[or;
+---
+> 	die "Watchman: $error.\n" .
+> 	"Falling back to scanning...\n" if $error;
+163,165c163,165
+< #[my $working_dir;
+< L∆sk∑U =~ 'cygwin') {
+< ∆sk∑UtCwd();
+---
+> 	my $working_dir;
+> 	if ($^O =~ 'msys' || $^O =~ 'cygwin') {
+> 		$working_dir = Win32::GetCwd();
+167c167
+< #[se {
+---
+> 	} else {
+169c169
+< L¡sk∑Ucwd();
+---
+> 		$working_dir = Cwd::cwd();
+============./.git/hooks/post-update.sample=============
+1c1
+< P∑_#!/bin/sh
+---
+> #!/bin/sh
+3,4c3,4
+< epare a packed repository for use over
+< P∑_umb transports.
+---
+> # An example hook script to prepare a packed repository for use over
+> # dumb transports.
+6c6
+< Q∑_ename this file to "post-update".
+---
+> # To enable this hook, rename this file to "post-update".
+8c8
+< §~‰ıUt update-server-info
+---
+> exec git update-server-info
+============./.git/hooks/pre-commit.sample=============
+1c1
+< UPË_#!/bin/sh
+---
+> #!/bin/sh
+3,6c3,6
+< rify what is about to be committed.
+< VPË_ hook should
+< VPË_fter issuing an appropriate message if
+< ¶2Ì⁄˚Ut wants to stop the commit.
+---
+> # An example hook script to verify what is about to be committed.
+> # Called by "git commit" with no arguments.  The hook should
+> # exit with non-zero status after issuing an appropriate message if
+> # it wants to stop the commit.
+8c8
+< VPË_".
+---
+> # To enable this hook, rename this file to "pre-commit".
+10c10
+< ¶3Ì⁄˚Uull 2>&1
+---
+> if git rev-parse --verify HEAD >/dev/null 2>&1
+14,15c14,15
+< VPË_t
+< VPË_null)
+---
+> 	# Initial commit: diff against an empty tree object
+> 	against=$(git hash-object -t tree /dev/null)
+18,19c18,19
+< VPË_ filenames set this variable to true.
+< VPË_llownonascii)
+---
+> # If you want to allow non-ASCII filenames set this variable to true.
+> allownonascii=$(git config --type=bool hooks.allownonascii)
+21c21
+< ¶2Ì⁄˚U.
+---
+> # Redirect output to stderr.
+24,32c24,32
+< VPË_d to avoid non-ASCII filenames; prevent
+< e exploit the fact that the
+<  with tilde.
+< 3Ì⁄˚Ue" ] &&
+< ÷3Ì⁄˚Uround a tr range is ok here, (it's
+< ÷3Ì⁄˚U /usr/bin/tr), since
+< ¶3Ì⁄˚Unge.
+< ÷3Ì⁄˚U --diff-filter=A -z $against |
+< ¶3Ì⁄˚U tr -d '[ -~]\0' | wc -c) != 0
+---
+> # Cross platform projects tend to avoid non-ASCII filenames; prevent
+> # them from being added to the repository. We exploit the fact that the
+> # printable range starts at the space character and ends with tilde.
+> if [ "$allownonascii" != "true" ] &&
+> 	# Note that the use of brackets around a tr range is ok here, (it's
+> 	# even required, for portability to Solaris 10's /usr/bin/tr), since
+> 	# the square bracket bytes happen to fall in the designated range.
+> 	test $(git diff --cached --name-only --diff-filter=A -z $against |
+> 	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+34,35c34,35
+< UPË_<\EOF
+< ¶3Ì⁄˚Ule name.
+---
+> 	cat <<\EOF
+> Error: Attempt to add a non-ASCII file name.
+37c37
+< ¶3Ì⁄˚U.
+---
+> This can cause problems if you want to work with people on other platforms.
+39c39
+< ¶3Ì⁄˚Ue the file.
+---
+> To be portable it is advisable to rename the file.
+41c41
+< ÷3Ì⁄˚Ug you can disable this check using:
+---
+> If you know what you are doing you can disable this check using:
+43c43
+< ¶2Ì⁄˚U config hooks.allownonascii true
+---
+>   git config hooks.allownonascii true
+45c45
+< UPË_ 1
+---
+> 	exit 1
+48,49c48,49
+< VPË_rint the offending file names and fail.
+< VPË_t --
+---
+> # If there are whitespace errors, print the offending file names and fail.
+> exec git diff-index --check --cached $against --
+============./.git/hooks/update.sample=============
+1c1
+< ‘◊c#!/bin/sh
+---
+> #!/bin/sh
+3,4c3,4
+< ock unannotated tags from entering.
+< efname sha1-old sha1-new
+---
+> # An example hook script to block unannotated tags from entering.
+> # Called by "git receive-pack" with arguments: refname sha1-old sha1-new
+6c6
+< %Ñçn:Vs hook, rename this file to "update".
+---
+> # To enable this hook, rename this file to "update".
+8c8
+< ’◊cConfig
+---
+> # Config
+11,17c11,17
+< ’◊cags will be allowed into the
+< ÂÉçn:Vy.  By default they won't be.
+< ‘◊cwdeletetag
+< ’◊celeting tags will be allowed in the
+< ÂÉçn:Vpository.  By default they won't be.
+< ‘◊cks.allowmodifytag
+< . By default
+---
+> #   This boolean sets whether unannotated tags will be allowed into the
+> #   repository.  By default they won't be.
+> # hooks.allowdeletetag
+> #   This boolean sets whether deleting tags will be allowed in the
+> #   repository.  By default they won't be.
+> # hooks.allowmodifytag
+> #   This boolean sets whether a tag may be modified after creation. By default
+19,21c19,21
+< ÖÑçn:Vwdeletebranch
+< ÂÉçn:V
+< ’◊c.
+---
+> # hooks.allowdeletebranch
+> #   This boolean sets whether deleting branches will be allowed in the
+> #   repository.  By default they won't be.
+23,24c23,24
+< ’◊cwill be denied
+< ÂÉçn:Vdefault this is allowed.
+---
+> #   This boolean sets whether remotely creating branches will be denied
+> #   in the repository.  By default this is allowed.
+27c27
+< ‘◊cline
+---
+> # --- Command line
+31c31
+< uïçn:V
+---
+> 
+33,37c33,37
+< ıÑçn:Vthen
+< Éçn:V command line." >&2
+< Éçn:Vyou could supply GIT_DIR then run" >&2
+< ÂÉçn:Vho "  $0 <ref> <oldrev> <newrev>)" >&2
+< ‘◊cit 1
+---
+> if [ -z "$GIT_DIR" ]; then
+> 	echo "Don't run this script from the command line." >&2
+> 	echo " (if you want, you could supply GIT_DIR then run" >&2
+> 	echo "  $0 <ref> <oldrev> <newrev>)" >&2
+> 	exit 1
+40,41c40,41
+< Éçn:V" -o -z "$newrev" ]; then
+< ÂÉçn:V <ref> <oldrev> <newrev>" >&2
+---
+> if [ -z "$refname" -o -z "$oldrev" -o -z "$newrev" ]; then
+> 	echo "usage: $0 <ref> <oldrev> <newrev>" >&2
+45,50c45,50
+< Ñçn:V# --- Config
+< Éçn:V --type=bool hooks.allowunannotated)
+< Éçn:Vs.allowdeletebranch)
+< %Ñçn:Vh)
+< Éçn:V hooks.allowdeletetag)
+< %Ñçn:V
+---
+> # --- Config
+> allowunannotated=$(git config --type=bool hooks.allowunannotated)
+> allowdeletebranch=$(git config --type=bool hooks.allowdeletebranch)
+> denycreatebranch=$(git config --type=bool hooks.denycreatebranch)
+> allowdeletetag=$(git config --type=bool hooks.allowdeletetag)
+> allowmodifytag=$(git config --type=bool hooks.allowmodifytag)
+53,56c53,56
+< %Ñçn:V(sed -e '1q' "$GIT_DIR/description")
+< ‘◊c"$projectdesc" in
+< ıÑçn:V"")
+< Éçn:Vsn't been set" >&2
+---
+> projectdesc=$(sed -e '1q' "$GIT_DIR/description")
+> case "$projectdesc" in
+> "Unnamed repository"* | "")
+> 	echo "*** Project description file hasn't been set" >&2
+61,64c61,64
+< ‘◊c Check types
+< Éçn:Vit's a commit to delete a ref.
+< Éçn:V-f]' '0')
+< ÖÑçn:V
+---
+> # --- Check types
+> # if $newrev is 0000...0000, it's a commit to delete a ref.
+> zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+> if [ "$newrev" = "$zero" ]; then
+67c67
+< ÂÉçn:Vit cat-file -t $newrev)
+---
+> 	newrev_type=$(git cat-file -t $newrev)
+70c70
+< %Öçn:V","$newrev_type" in
+---
+> case "$refname","$newrev_type" in
+72,76c72,76
+< ‘◊c	# un-annotated tag
+< %Öçn:Vame##refs/tags/}
+< ÂÉçn:V" != "true" ]; then
+< ’◊cd in this repository" >&2
+< ’◊co propagate." >&2
+---
+> 		# un-annotated tag
+> 		short_refname=${refname##refs/tags/}
+> 		if [ "$allowunannotated" != "true" ]; then
+> 			echo "*** The un-annotated tag, $short_refname, is not allowed in this repository" >&2
+> 			echo "*** Use 'git tag [ -a | -s ]' for tags you want to propagate." >&2
+80c80
+< ’◊cs/tags/*,delete)
+---
+> 	refs/tags/*,delete)
+82,83c82,83
+< ÂÉçn:Vllowdeletetag" != "true" ]; then
+< UÑçn:Vrepository" >&2
+---
+> 		if [ "$allowdeletetag" != "true" ]; then
+> 			echo "*** Deleting a tag is not allowed in this repository" >&2
+87c87
+< ‘◊ctags/*,tag)
+---
+> 	refs/tags/*,tag)
+89c89
+< ’◊c$refname > /dev/null 2>&1
+---
+> 		if [ "$allowmodifytag" != "true" ] && git rev-parse $refname > /dev/null 2>&1
+91,92c91,92
+< ’◊c*** Tag '$refname' already exists." >&2
+< ’◊cin this repository." >&2
+---
+> 			echo "*** Tag '$refname' already exists." >&2
+> 			echo "*** Modifying a tag is not allowed in this repository." >&2
+95c95
+< ’◊c;;
+---
+> 		;;
+98,99c98,99
+< UÑçn:V" = "true" ]; then
+< %Ñçn:V >&2
+---
+> 		if [ "$oldrev" = "$zero" -a "$denycreatebranch" = "true" ]; then
+> 			echo "*** Creating a branch is not allowed in this repository" >&2
+103c103
+< ‘◊cete)
+---
+> 	refs/heads/*,delete)
+105,106c105,106
+< %Ñçn:Vebranch" != "true" ]; then
+< ’◊cository" >&2
+---
+> 		if [ "$allowdeletebranch" != "true" ]; then
+> 			echo "*** Deleting a branch is not allowed in this repository" >&2
+110c110
+< ıÑçn:Votes/*,commit)
+---
+> 	refs/remotes/*,commit)
+113,116c113,116
+< ıÑçn:Vefs/remotes/*,delete)
+< ıÑçn:Vbranch
+< %Ñçn:Ve" ]; then
+< %Ñçn:V" >&2
+---
+> 	refs/remotes/*,delete)
+> 		# delete tracking branch
+> 		if [ "$allowdeletebranch" != "true" ]; then
+> 			echo "*** Deleting a tracking branch is not allowed in this repository" >&2
+121,123c121,123
+< %Ñçn:V else (is there anything else?)
+< ’◊cef $refname of type $newrev_type" >&2
+< ‘◊cit 1
+---
+> 		# Anything else (is there anything else?)
+> 		echo "*** Update hook: unknown type of update to ref $refname of type $newrev_type" >&2
+> 		exit 1
+============./.git/hooks/applypatch-msg.sample=============
+1c1
+< MZ•b#!/bin/sh
+---
+> #!/bin/sh
+3,4c3,4
+< eck the commit log message taken by
+< π7/Vypatch from an e-mail message.
+---
+> # An example hook script to check the commit log message taken by
+> # applypatch from an e-mail message.
+6,8c6,8
+< NZ•bssuing an
+< NZ•bs to stop the commit.  The hook is
+< æπ7/Ved to edit the commit message file.
+---
+> # The hook should exit with non-zero status after issuing an
+> # appropriate message if it wants to stop the commit.  The hook is
+> # allowed to edit the commit message file.
+10c10
+< NZ•bplypatch-msg".
+---
+> # To enable this hook, rename this file to "applypatch-msg".
+13,14c13,14
+< NZ•bg)"
+< ~æ7/Vsg" ${1+"$@"}
+---
+> commitmsg="$(git rev-parse --git-path hooks/commit-msg)"
+> test -x "$commitmsg" && exec "$commitmsg" ${1+"$@"}
+============./.git/hooks/prepare-commit-msg.sample=============
+1c1
+< '«c#!/bin/sh
+---
+> #!/bin/sh
+3,8c3,8
+< epare the commit log message.
+< («ct has the
+< («ce description of the commit
+< ÿD|è5Vommit
+< («cith a non-zero status,
+< D|è5Vrted.
+---
+> # An example hook script to prepare the commit log message.
+> # Called by "git commit" with the name of the file that has the
+> # commit message, followed by the description of the commit
+> # message's source.  The hook's purpose is to edit the commit
+> # message file.  If the hook fails with a non-zero status,
+> # the commit is aborted.
+10c10
+< («c file to "prepare-commit-msg".
+---
+> # To enable this hook, rename this file to "prepare-commit-msg".
+12,13c12,13
+< («cemoves the
+< C|è5Vssage..." help message.
+---
+> # This hook includes three examples. The first one removes the
+> # "# Please enter the commit message..." help message.
+15,17c15,17
+< C|è5Vs -r"
+< («c"git status" output.  It is
+<  squashed
+---
+> # The second includes the output of "git diff --name-status -r"
+> # into the message, just before the "git status" output.  It is
+> # commented because it doesn't cope with --amend or with squashed
+20,21c20,21
+< («c that can
+< C|è5Vly a good idea.
+---
+> # The third example adds a Signed-off-by line to the message, that can
+> # still be edited.  This is rarely a good idea.
+24c24
+< '«c_SOURCE=$2
+---
+> COMMIT_SOURCE=$2
+27,28c27,28
+< mit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+< Ëµ|è5V
+---
+> /usr/bin/perl -i.bak -ne 'print unless(m/^. Please enter the commit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+> 
+30c30
+< («cplate,)
+---
+> #  ,|template,)
+32,33c32,33
+< XC|è5Vme-status -r`
+< ÿD|è5V' "$COMMIT_MSG_FILE" ;;
+---
+> #       print "\n" . `git diff --cached --name-status -r`
+> # 	 if /^#/ && $first++ == 0' "$COMMIT_MSG_FILE" ;;
+37,39c37,39
+< n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+< («c "$SOB" "$COMMIT_MSG_FILE"
+< ÿE|è5VCOMMIT_SOURCE"
+---
+> # SOB=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+> # git interpret-trailers --in-place --trailer "$SOB" "$COMMIT_MSG_FILE"
+> # if test -z "$COMMIT_SOURCE"
+41c41
+< («cCOMMIT_MSG_FILE"
+---
+> #   /usr/bin/perl -i.bak -pe 'print "\n" if !$first_line++' "$COMMIT_MSG_FILE"
+============./.git/hooks/pre-rebase.sample=============
+1c1
+< >/n^#!/bin/sh
+---
+> #!/bin/sh
+3c3
+< io C Hamano
+---
+> # Copyright (c) 2006, 2008 Junio C Hamano
+5,7c5,7
+< un just before "git rebase" starts doing
+<  running by exiting with
+< >/n^.
+---
+> # The "pre-rebase" hook is run just before "git rebase" starts doing
+> # its job, and can prevent the command from running by exiting with
+> # non-zero status.
+9c9
+< ˇ‹ùº„Ug parameters:
+---
+> # The hook is called with the following parameters:
+11,12c11,12
+< ˇ‹ùº„Ueries was forked from.
+< current branch).
+---
+> # $1 -- the upstream the series was forked from.
+> # $2 -- the branch being rebased (or empty when rebasing the current branch).
+14,16c14,16
+< ˇ‹ùº„Uy
+< ?€ùº„Uebased, because allowing it
+< ?/n^ in rebasing already published history.
+---
+> # This sample shows how to prevent topic branches that are already
+> # merged to 'next' branch from getting rebased, because allowing it
+> # would result in rebasing already published history.
+18c18
+< ?/n^ublish=next
+---
+> publish=next
+20c20
+< >/n^ 2
+---
+> if test "$#" = 2
+24,26c24,26
+< ‹ùº„U=`git symbolic-ref HEAD` ||
+< ?/n^do not interrupt rebasing detached HEAD
+< ?/n^
+---
+> 	topic=`git symbolic-ref HEAD` ||
+> 	exit 0 ;# we do not interrupt rebasing detached HEAD
+> fi
+31c31
+< >/n^
+---
+> *)
+33c33
+< >/n^;
+---
+> 	;;
+36,37c36,37
+< ˇ‹ùº„Ubranch being rebased
+< ˇ‹ùº„UIs it OK to rebase it?
+---
+> # Now we are dealing with a topic branch being rebased
+> # on top of master.  Is it OK to rebase it?
+39,40c39,40
+< œ›ùº„Ueally exist?
+< ‹ùº„U
+---
+> # Does the topic really exist?
+> git show-ref -q "$topic" || {
+42c42
+< >/n^
+---
+> 	exit 1
+46,47c46,47
+< ?€ùº„U^master "$topic"`
+< ‹ùº„Uer"
+---
+> not_in_master=`git rev-list --pretty=oneline ^master "$topic"`
+> if test -z "$not_in_master"
+49,56c49,56
+< ?€ùº„U to master; better remove it."
+< ?/n^we could allow it, but there is no point.
+< n€ùº„Ufi
+< 
+< ?€ùº„U you should not be rebasing it.
+< ?€ùº„Uh} | sort`
+< ?€ùº„Uer           ${publish} | sort`
+< o‹ùº„Uonly_next_1" = "$only_next_2"
+---
+> 	echo >&2 "$topic is fully merged to master; better remove it."
+> 	exit 1 ;# we could allow it, but there is no point.
+> fi
+> 
+> # Is topic ever merged to next?  If so you should not be rebasing it.
+> only_next_1=`git rev-list ^master "^$topic" ${publish} | sort`
+> only_next_2=`git rev-list ^master           ${publish} | sort`
+> if test "$only_next_1" = "$only_next_2"
+58,59c58,59
+< o‹ùº„U_topic=`git rev-list "^$topic" master`
+< œ›ùº„U test -z "$not_in_topic"
+---
+> 	not_in_topic=`git rev-list "^$topic" master`
+> 	if test -z "$not_in_topic"
+61,62c61,62
+< ?/n^
+< ?/n^is no point.
+---
+> 		echo >&2 "$topic is already up to date with master"
+> 		exit 1 ;# we could allow it, but there is no point.
+67c67
+< ?€ùº„Upublish} "$topic"`
+---
+> 	not_in_next=`git rev-list --pretty=oneline ^${publish} "$topic"`
+69,70c69,70
+< ‹ùº„Uy $topic = $ARGV[0];
+< ?/n^ch:\n";
+---
+> 		my $topic = $ARGV[0];
+> 		my $msg = "* $topic has commits already merged to public branch:\n";
+72c72
+< >/n^[0-9a-f]+) /;
+---
+> 			/^([0-9a-f]+) /;
+74c74
+< Ø‹ùº„U, $ARGV[1]);
+---
+> 		} split(/\n/, $ARGV[1]);
+76c76
+< Ø‹ùº„U[0-9a-f]+) (.*)$/;
+---
+> 				/^([0-9a-f]+) (.*)$/;
+78,79c78,79
+< Ø‹ùº„Ulit(/\n/, $ARGV[2])) {
+< ˇ‹ùº„U_in_next{$elem->[0]}) {
+---
+> 			} split(/\n/, $ARGV[2])) {
+> 			if (!exists $not_in_next{$elem->[0]}) {
+81c81
+< Ø‹ùº„U			print STDERR $msg;
+---
+> 					print STDERR $msg;
+83c83
+< >/n^	}
+---
+> 				}
+86,87c86,87
+< ˛Õùº„U		}
+< ˇ‹ùº„Uster"
+---
+> 		}
+> 	' "$topic" "$not_in_next" "$not_in_master"
+93c93
+< ?/n^een
+---
+> This sample hook safeguards topic branches that have been
+96c96
+< ‹ùº„Ukflow assumed here is:
+---
+> The workflow assumed here is:
+98,99c98,99
+< ˇ‹ùº„Ur
+< Ô€ùº„U or indirectly).
+---
+>  * Once a topic branch forks from "master", "master" is never
+>    merged into it again (either directly or indirectly).
+101,105c101,105
+< Ô€ùº„Us fully cooked and merged into "master",
+< Ô€ùº„Utop of it to correct
+< ˇ‹ùº„Ut
+< Ô€ùº„U strictly necessary, but
+< ˇ‹ùº„Usier to keep your history simple.
+---
+>  * Once a topic branch is fully cooked and merged into "master",
+>    it is deleted.  If you need to build on top of it to correct
+>    earlier mistakes, a new topic branch is created by forking at
+>    the tip of the "master".  This is not strictly necessary, but
+>    it makes it easier to keep your history simple.
+107,108c107,108
+< Ô€ùº„Uges to topic
+< o‹ùº„U"next" branch.
+---
+>  * Whenever you need to test or publish your changes to topic
+>    branches, merge them into "next" branch.
+110,111c110,111
+< Ô€ùº„Ule, hardcodes the publish branch name
+< Ô€ùº„Ufigurable via
+---
+> The script, being an example, hardcodes the publish branch name
+> to be "next", but it is trivial to make it configurable via
+114c114
+< ?/n^:
+---
+> With this workflow, you would want to know:
+116,128c116,128
+< Ô€ùº„U merged to "next".  Young
+< ˇ‹ùº„Uer
+< Ô€ùº„Ungs that have not been
+< Ô€ùº„Uer branches can be easily rebased without
+< Ô€ùº„Us published, you would
+< œ›ùº„Uind it.
+< 
+< Ô€ùº„Un fully merged to "master".
+< o‹ùº„Ud not
+< Ô€ùº„Ule may already want to
+< o‹ùº„Ur
+< Ô€ùº„Unges, it is better to
+< o‹ùº„Ue
+---
+> (1) ... if a topic branch has ever been merged to "next".  Young
+>     topic branches can have stupid mistakes you would rather
+>     clean up before publishing, and things that have not been
+>     merged into other branches can be easily rebased without
+>     affecting other people.  But once it is published, you would
+>     not want to rewind it.
+> 
+> (2) ... if a topic branch has been fully merged to "master".
+>     Then you can delete it.  More importantly, you should not
+>     build on top of it -- other people may already want to
+>     change things related to the topic as patches against your
+>     "master", so if you need further changes, it is better to
+>     fork the topic (perhaps with the same name) afresh from the
+131c131
+< œ›ùº„U example:
+---
+> Let's look at this example:
+133,139c133,139
+< o‹ùº„U--o---o---o "next"
+< Ø‹ùº„U /           /
+< ‹ùº„U        /
+< ‹ùº„U  /
+< o‹ùº„U  /
+< o‹ùº„U /
+< o‹ùº„U
+---
+> 		   o---o---o---o---o---o---o---o---o---o "next"
+> 		  /       /           /           /
+> 		 /   a---a---b A     /           /
+> 		/   /               /           /
+> 	       /   /   c---c---c---c B         /
+> 	      /   /   /             \         /
+> 	     /   /   /   b---b C     \       /
+141c141
+< Ô€ùº„U---o "master"
+---
+>     ---o---o---o---o---o---o---o---o---o---o---o "master"
+144c144
+< ‹ùº„Uhes.
+---
+> A, B and C are topic branches.
+146c146
+< ˇ‹ùº„U up to "next".
+---
+>  * A has one fix since it was merged up to "next".
+148c148
+< ˇ‹ùº„Ut",
+---
+>  * B has finished.  It has been fully merged up to "master" and "next",
+151c151
+< œ›ùº„Uas not merged to "next" at all.
+---
+>  * C has not merged to "next" at all.
+153c153
+< Ô€ùº„Und encourage
+---
+> We would want to allow C to be rebased, refuse A, and encourage
+156c156
+< >/n^(1):
+---
+> To compute (1):
+159c159
+< œ›ùº„Uit rev-list ^master        next
+---
+> 	git rev-list ^master        next
+161c161
+< ?/n^l.
+---
+> 	if these match, topic has not merged in next at all.
+165c165
+< Ø‹ùº„U.topic
+---
+> 	git rev-list master..topic
+167c167
+< o‹ùº„Uged to "master".
+---
+> 	if this is empty, it is fully merged to "master".
+============./.git/hooks/pre-receive.sample=============
+1c1
+< +˘ƒa#!/bin/sh
+---
+> #!/bin/sh
+3,5c3,5
+< ke use of push options.
+< ú:V.V 'echoback='
+< ,˘ƒa the "reject" push option is used.
+---
+> # An example hook script to make use of push options.
+> # The example simply echoes all push options that start with 'echoback='
+> # and rejects all pushes when the "reject" push option is used.
+7c7
+< ,˘ƒa-receive".
+---
+> # To enable this hook, rename this file to "pre-receive".
+9c9
+< ‹;V.VOUNT"
+---
+> if test -n "$GIT_PUSH_OPTION_COUNT"
+12c12
+< |:V.V_PUSH_OPTION_COUNT"
+---
+> 	while test "$i" -lt "$GIT_PUSH_OPTION_COUNT"
+14c14
+< :V.VT_PUSH_OPTION_$i"
+---
+> 		eval "value=\$GIT_PUSH_OPTION_$i"
+16,17c16,17
+< +˘ƒaoback=*)
+< ,˘ƒae-hook: ${value#*=}" >&2
+---
+> 		echoback=*)
+> 			echo "echo from the pre-receive-hook: ${value#*=}" >&2
+20c20
+< ,˘ƒa		exit 1
+---
+> 			exit 1
+============./.git/hooks/push-to-checkout.sample=============
+1c1
+<  =Ó[#!/bin/sh
+---
+> #!/bin/sh
+3c3
+< ate a checked-out tree on a git push.
+---
+> # An example hook script to update a checked-out tree on a git push.
+5,8c5,8
+< !=Ó[) when it reacts to git
+< the push
+< °.<∏ªU is currently checked out and the
+< °.<∏ªU is set to
+---
+> # This hook is invoked by git-receive-pack(1) when it reacts to git
+> # push and updates reference(s) in its repository, and when the push
+> # tries to update the branch that is currently checked out and the
+> # receive.denyCurrentBranch configuration variable is set to
+11,17c11,17
+< °.<∏ªUee and the index
+< °.<∏ªUy has any difference from the currently
+< tree and the index match
+< !=Ó[ushed tip
+< Q)<∏ªU be used to override the default
+< Q)<∏ªUe default behaviour
+< —.<∏ªUfor convenient modification.
+---
+> # By default, such a push is refused if the working tree and the index
+> # of the remote repository has any difference from the currently
+> # checked out commit; when both the working tree and the index match
+> # the current commit, they are updated to match the newly pushed tip
+> # of the branch. This hook is to be used to override the default
+> # behaviour; however the code below reimplements the default behaviour
+> # as a starting point for convenient modification.
+19,20c19,20
+< Q)<∏ªUthe current
+< .<∏ªUd:
+---
+> # The hook receives the commit with which the tip of the current
+> # branch is going to be updated:
+23,24c23,24
+< Q)<∏ªUo status to refuse the push (when it does
+< Q)<∏ªUworking tree).
+---
+> # It can exit with a non-zero status to refuse the push (when it does
+> # so, it must not modify the index or the working tree).
+27c27
+< !=Ó[it 1
+---
+> 	exit 1
+30,48c30,48
+< Q)<∏ªUnges to the working tree and to the
+< Q)<∏ªUthe tip of the current
+< )<∏ªUtatus.
+< #
+< Q)<∏ªUy run git read-tree -u -m HEAD "$1"
+< Q)<∏ªUhe reverse direction
+< —.<∏ªU
+< Q)<∏ªUit checkout that switches
+< !=Ó[tree that do
+< °.<∏ªUerence between the branches.
+< 
+< °.<∏ªUll of the C code
+< —.<∏ªU in
+< °.<∏ªUltin/receive-pack.c.
+< #
+< !=Ó[ectory,
+< Q)<∏ªU you want to perform operations on
+< Q)<∏ªUode accordingly, e.g.
+< )<∏ªUor using relative paths.
+---
+> # Or it can make any necessary changes to the working tree and to the
+> # index to bring them to the desired state when the tip of the current
+> # branch is updated to the new commit, and exit with a zero status.
+> #
+> # For example, the hook can simply run git read-tree -u -m HEAD "$1"
+> # in order to emulate git fetch that is run in the reverse direction
+> # with git push, as the two-tree form of git read-tree -u -m is
+> # essentially the same as git switch or git checkout that switches
+> # branches while keeping the local changes in the working tree that do
+> # not interfere with the difference between the branches.
+> 
+> # The below is a more-or-less exact translation to shell of the C code
+> # for the default behaviour for git's push-to-checkout hook defined in
+> # the push_to_deploy() function in builtin/receive-pack.c.
+> #
+> # Note that the hook will be executed from the repository directory,
+> # not from the working tree, so if you want to perform operations on
+> # the working tree, you will have to adapt your code accordingly, e.g.
+> # by adding "cd .." or using relative paths.
+50,51c50,51
+< )<∏ªUindex -q --ignore-submodules --refresh
+<  =Ó[n
+---
+> if ! git update-index -q --ignore-submodules --refresh
+> then
+55c55
+< !=Ó[ --
+---
+> if ! git diff-files --quiet --ignore-submodules --
+57c57
+< )<∏ªUged changes"
+---
+> 	die "Working directory has unstaged changes"
+60c60
+< q.<∏ªUtion of:
+---
+> # This is a rough translation of:
+62,63c62,63
+< )<∏ªU : EMPTY_TREE_SHA1_HEX
+< .<∏ªUHEAD 2>/dev/null
+---
+> #   head_has_history() ? "HEAD" : EMPTY_TREE_SHA1_HEX
+> if git cat-file -e HEAD 2>/dev/null
+67c67
+< !=Ó[null)
+---
+> 	head=$(git hash-object -t tree --stdin </dev/null)
+70c70
+< Q)<∏ªUched --ignore-submodules $head --
+---
+> if ! git diff-index --quiet --cached --ignore-submodules $head --
+72,73c72,73
+< !=Ó[e "Working directory has staged changes"
+<  =Ó[i
+---
+> 	die "Working directory has staged changes"
+> fi
+76,77c76,77
+<  =Ó[
+< !=Ó[w HEAD"
+---
+> then
+> 	die "Could not update working tree to new HEAD"
+============./.git/hooks/commit-msg.sample=============
+1c1
+< †wbW#!/bin/sh
+---
+> #!/bin/sh
+3,9c3,9
+< eck the commit log message.
+< the file
+< !dpsUhe hook should exit with non-zero
+< !dpsUt wants to stop the
+< !dpsU allowed to edit the commit message file.
+< pdpsU#
+< !dpsUto "commit-msg".
+---
+> # An example hook script to check the commit log message.
+> # Called by "git commit" with one argument, the name of the file
+> # that has the commit message.  The hook should exit with non-zero
+> # status after issuing an appropriate message if it wants to stop the
+> # commit.  The hook is allowed to edit the commit message file.
+> #
+> # To enable this hook, rename this file to "commit-msg".
+11,13c11,13
+< !dpsU add a Signed-off-by line to the message.
+< neral, but the prepare-commit-msg
+< ÅdpsUs more suited to it.
+---
+> # Uncomment the below to add a Signed-off-by line to the message.
+> # Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+> # hook is more suited to it.
+15,16c15,16
+< °wbWed-off-by: \1/p')
+< ëcpsU|| echo "$SOB" >> "$1"
+---
+> # SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+> # grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+18c18
+< ëcpsUches duplicate Signed-off-by lines.
+---
+> # This example catches duplicate Signed-off-by lines.
+20,22c20,22
+< ëcpsU"" = "$(grep '^Signed-off-by: ' "$1" |
+< °wbW|| {
+< ëcpsUes.
+---
+> test "" = "$(grep '^Signed-off-by: ' "$1" |
+> 	 sort | uniq -c | sed -e '/^[ 	]*1[ 	]/d')" || {
+> 	echo >&2 Duplicate Signed-off-by lines.
+============./.git/hooks/pre-push.sample=============
+1c1
+< ∂FV[#!/bin/sh
+---
+> #!/bin/sh
+3,5c3,5
+< w5=?∞U "git
+< ∑FV[ote status, but before anything has been
+< ∑FV[zero status nothing will be pushed.
+---
+> # An example hook script to verify what is about to be pushed.  Called by "git
+> # push" after it has checked the remote status, but before anything has been
+> # pushed.  If this script exits with a non-zero status nothing will be pushed.
+7c7
+< ∑FV[eters:
+---
+> # This hook is called with the following parameters:
+9,10c9,10
+< ch the push is being done
+< w5=?∞Uhich the push is being done
+---
+> # $1 -- Name of the remote to which the push is being done
+> # $2 -- URL to which the push is being done
+12c12
+< ∑FV[nts will be equal.
+---
+> # If pushing without using a named remote those arguments will be equal.
+14,15c14,15
+< ied as lines to
+< Á5=?∞Ue form:
+---
+> # Information about the commits which are being pushed is supplied as lines to
+> # the standard input in the form:
+17c17
+< 75=?∞Uote ref> <remote oid>
+---
+> #   <local ref> <local oid> <remote ref> <remote oid>
+19,20c19,20
+< ∑FV[ log message starts
+< G4=?∞Uprogress).
+---
+> # This sample shows how to prevent push of commits where the log message starts
+> # with "WIP" (work in progress).
+25c25
+< g2=?∞U-9a-f]' '0')
+---
+> zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+27c27
+< w5=?∞Uid remote_ref remote_oid
+---
+> while read local_ref local_oid remote_ref remote_oid
+29c29
+< G4=?∞Ual_oid" = "$zero"
+---
+> 	if test "$local_oid" = "$zero"
+32c32
+< w$=?∞U		:
+---
+> 		:
+34c34
+< ó5=?∞U"
+---
+> 		if test "$remote_oid" = "$zero"
+36c36
+< ó5=?∞Uits
+---
+> 			# New branch, examine all commits
+39c39
+< ∑FV[
+---
+> 			# Update to existing branch, examine new commits
+43,45c43,45
+< ó5=?∞U		# Check for WIP commit
+< w5=?∞Uv-list -n 1 --grep '^WIP' "$range")
+< ∂FV[est -n "$commit"
+---
+> 		# Check for WIP commit
+> 		commit=$(git rev-list -n 1 --grep '^WIP' "$range")
+> 		if test -n "$commit"
+47,48c47,48
+< g2=?∞U WIP commit in $local_ref, not pushing"
+< ∑FV[	exit 1
+---
+> 			echo >&2 "Found WIP commit in $local_ref, not pushing"
+> 			exit 1
+============./.git/hooks/pre-merge-commit.sample=============
+0a1,13
+> #!/bin/sh
+> #
+> # An example hook script to verify what is about to be committed.
+> # Called by "git merge" with no arguments.  The hook should
+> # exit with non-zero status after issuing an appropriate message to
+> # stderr if it wants to stop the merge commit.
+> #
+> # To enable this hook, rename this file to "pre-merge-commit".
+> 
+> . git-sh-setup
+> test -x "$GIT_DIR/hooks/pre-commit" &&
+>         exec "$GIT_DIR/hooks/pre-commit"
+> :
+============./.git/hooks/pre-applypatch.sample=============
+1c1
+< Sî“V#!/bin/sh
+---
+> #!/bin/sh
+3,4c3,4
+< rify what is about to be committed
+< plypatch from an e-mail message.
+---
+> # An example hook script to verify what is about to be committed
+> # by applypatch from an e-mail message.
+6,7c6,7
+< Tî“V issuing an
+< §◊óhUnts to stop the commit.
+---
+> # The hook should exit with non-zero status after issuing an
+> # appropriate message if it wants to stop the commit.
+9c9
+< §◊óhU".
+---
+> # To enable this hook, rename this file to "pre-applypatch".
+12,13c12,13
+< Tî“Vrse --git-path hooks/pre-commit)"
+< Tî“V}
+---
+> precommit="$(git rev-parse --git-path hooks/pre-commit)"
+> test -x "$precommit" && exec "$precommit" ${1+"$@"}
+============./.git/description=============
+1c1
+< ption' to name the repository.
+---
+> Unnamed repository; edit this file 'description' to name the repository.
+============./.git/refs/heads/master=============
+1c1
+< l©e_68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+---
+> 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+============./.git/refs/remotes/origin/HEAD=============
+1c1
+<  DπZref: refs/remotes/origin/master
+---
+> ref: refs/remotes/origin/master
+============./.git/refs/remotes/origin/master=============
+1c1
+< J°}U68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+---
+> 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+============./.git/HEAD=============
+0a1
+> ref: refs/heads/master
+============./.git/config=============
+1c1
+< ·0É\[core]
+---
+> [core]
+3c3
+< ‚0É\ode = true
+---
+> 	filemode = true
+5c5
+< çoÕU = true
+---
+> 	logallrefupdates = true
+7,9c7,9
+< b.com:Aghlimi/get_next_line.git
+< ‚0É\refs/heads/*:refs/remotes/origin/*
+< ‚0É\ "master"]
+---
+> 	url = git@github.com:Aghlimi/get_next_line.git
+> 	fetch = +refs/heads/*:refs/remotes/origin/*
+> [branch "master"]
+11,12c11,12
+< ¬çoÕUheads/master
+< ‚0É\aster
+---
+> 	merge = refs/heads/master
+> 	vscode-merge-base = origin/master
+============./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.pack=============
+Binary files t and ./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.pack differ
+============./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.idx=============
+Binary files t and ./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.idx differ
+============./.git/objects/67/2dc18b1458edbdf479ec52833f19d66952cd90=============
+Binary files t and ./.git/objects/67/2dc18b1458edbdf479ec52833f19d66952cd90 differ
+============./.git/objects/a1/0e639d7bcc841aa4f642377829be2d1f653291=============
+Binary files t and ./.git/objects/a1/0e639d7bcc841aa4f642377829be2d1f653291 differ
+============./.git/objects/54/1f01ec309e4f0f21ad1a90fd4e67d02e84789c=============
+Binary files t and ./.git/objects/54/1f01ec309e4f0f21ad1a90fd4e67d02e84789c differ
+============./.git/objects/0a/942ddf4444be79684af080e3c6762717cb787b=============
+1,2c1,2
+< Ïµ-Î¡U,<8
+< –{>5πX¸±qd${0iÔÏ˙ø`J]Í˜{y∑ÈÀ8ÛÆ„GÙ
+\ No newline at end of file
+---
+> xùŒA¬ Öa◊úÇΩâôÅictÂ9¶0XiMÉ˜W{woıΩ?≠≠’n¡°o™v ,Äö<D•≈°dî%ìéú¡i 1ôól∫tŸ%eÙ,<8
+> A\pP"≈Ã”‰eî1qF#Ô>ØõΩÕM≥Ωœœ⁄™=Àc◊‰7z!ú–{>5πX¸±qd${0iÔÏ˙ø`J]Í˜{y∑ÈÀ8ÛÆ„GÙ
+\ No newline at end of file
+============./.git/objects/73/a4a298fa8a4e51ace68fe8fc0ea5f5f2df0af1=============
+Binary files t and ./.git/objects/73/a4a298fa8a4e51ace68fe8fc0ea5f5f2df0af1 differ
+============./.git/objects/5c/69b5cc155382176bda31a2b349fd1a5cd05c82=============
+Binary files t and ./.git/objects/5c/69b5cc155382176bda31a2b349fd1a5cd05c82 differ
+============./.git/objects/e1/15844c12b529c5a53825dc953aa7ea91593745=============
+Binary files t and ./.git/objects/e1/15844c12b529c5a53825dc953aa7ea91593745 differ
+============./.git/objects/3f/e4f4db0d6ce8c145455c2a671fe99e350355f3=============
+Binary files t and ./.git/objects/3f/e4f4db0d6ce8c145455c2a671fe99e350355f3 differ
+============./.git/objects/cf/8a7e9aa19c0c72b3d023436b70ff510e4a44d4=============
+Binary files t and ./.git/objects/cf/8a7e9aa19c0c72b3d023436b70ff510e4a44d4 differ
+============./.git/objects/68/c84f03c93558ba7a3f0a0e1d8642e1ad13a709=============
+1,2c1,2
+< BW„[xùŒA
+< âb_ıÍ1päÁÅ}‡Ï¯lÂ¡uù˚1wB‡
+\ No newline at end of file
+---
+> xùŒA
+> ¬0@Q◊9EˆÖ2ìô1àË sL'©-[Jºø“#∏˚´«∑µ÷•˘‚©Ì•xõç%©b2∞F àÈ<Fò&A(¨Ãô›¶{y7_e`6£Ñd¢BCêlIHê&îDë≈ÈßÕÎÓÔs-Ÿ?Ê◊R—Á7£ù7Ñâb_ıÍ1päÁÅ}‡Ï¯lÂ¡uù˚1wB‡
+\ No newline at end of file
+============./.git/packed-refs=============
+1,2c1,2
+< äÙÁZed 
+< d1 refs/remotes/origin/master
+---
+> # pack-refs with: peeled fully-peeled sorted 
+> 97304ce7137a752488a2820f949d7bb3a6a6c7d1 refs/remotes/origin/master
+============./.git/logs/refs/remotes/origin/HEAD=============
+1c1
+< /get_next_line.git
+---
+> 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+============./.git/logs/refs/remotes/origin/master=============
+1,3c1,3
+< 96720 +0100	update by push
+< uıÄõVate by push
+< ı¶Ôa37.ma> 1730497691 +0100	update by push
+---
+> 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496720 +0100	update by push
+> 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496925 +0100	update by push
+> e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497691 +0100	update by push
+============./.git/logs/refs/heads/master=============
+1,5c1,4
+< /get_next_line.git
+< ß
+< x˚ÀUied number 2
+< 'yÍ\337.ma> 1730496917 +0100	commit: finished
+< 'yÍ\97684 +0100	commit: ++
+---
+> 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+> 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496714 +0100	commit: finied number 2
+> 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496917 +0100	commit: finished
+> e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497684 +0100	commit: ++
+============./.git/logs/HEAD=============
+1,4c1,4
+< /get_next_line.git
+< ˝ıvMÙUied number 2
+< }&_337.ma> 1730496917 +0100	commit: finished
+< }&_97684 +0100	commit: ++
+---
+> 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+> 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496714 +0100	commit: finied number 2
+> 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496917 +0100	commit: finished
+> e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497684 +0100	commit: ++
+============./.git/index=============
+Binary files t and ./.git/index differ
+============./.git/COMMIT_EDITMSG=============
+1c1
+< †Ù%X++
+---
+> ++
+============./.vscode/settings.json=============
+0a1,59
+> {
+>   "C_Cpp_Runner.cCompilerPath": "gcc",
+>   "C_Cpp_Runner.cppCompilerPath": "g++",
+>   "C_Cpp_Runner.debuggerPath": "gdb",
+>   "C_Cpp_Runner.cStandard": "",
+>   "C_Cpp_Runner.cppStandard": "",
+>   "C_Cpp_Runner.msvcBatchPath": "",
+>   "C_Cpp_Runner.useMsvc": false,
+>   "C_Cpp_Runner.warnings": [
+>     "-Wall",
+>     "-Wextra",
+>     "-Wpedantic",
+>     "-Wshadow",
+>     "-Wformat=2",
+>     "-Wcast-align",
+>     "-Wconversion",
+>     "-Wsign-conversion",
+>     "-Wnull-dereference"
+>   ],
+>   "C_Cpp_Runner.msvcWarnings": [
+>     "/W4",
+>     "/permissive-",
+>     "/w14242",
+>     "/w14287",
+>     "/w14296",
+>     "/w14311",
+>     "/w14826",
+>     "/w44062",
+>     "/w44242",
+>     "/w14905",
+>     "/w14906",
+>     "/w14263",
+>     "/w44265",
+>     "/w14928"
+>   ],
+>   "C_Cpp_Runner.enableWarnings": true,
+>   "C_Cpp_Runner.warningsAsError": false,
+>   "C_Cpp_Runner.compilerArgs": [],
+>   "C_Cpp_Runner.linkerArgs": [],
+>   "C_Cpp_Runner.includePaths": [],
+>   "C_Cpp_Runner.includeSearch": [
+>     "*",
+>     "**/*"
+>   ],
+>   "C_Cpp_Runner.excludeSearch": [
+>     "**/build",
+>     "**/build/**",
+>     "**/.*",
+>     "**/.*/**",
+>     "**/.vscode",
+>     "**/.vscode/**"
+>   ],
+>   "C_Cpp_Runner.useAddressSanitizer": false,
+>   "C_Cpp_Runner.useUndefinedSanitizer": false,
+>   "C_Cpp_Runner.useLeakSanitizer": false,
+>   "C_Cpp_Runner.showCompilationTime": false,
+>   "C_Cpp_Runner.useLinkTimeOptimization": false,
+>   "C_Cpp_Runner.msvcSecureNoWarnings": false
+> }
+\ No newline at end of file
+============./.vscode/launch.json=============
+1c1
+<  öÀa{
+---
+> {
+3c3
+<  öÀa: [
+---
+>   "configurations": [
+5c5
+< ug Session",
+---
+>       "name": "C/C++ Runner: Debug Session",
+7c7
+< ã)gÿV "request": "launch",
+---
+>       "request": "launch",
+9,14c9,14
+< ÀöÀa    "stopAtEntry": false,
+< €)gÿVonsole": false,
+< i/Desktop/cursus/get_next_line",
+< next_line/build/Debug/outDebug",
+< ÀöÀaMode": "gdb",
+< €)gÿV",
+---
+>       "stopAtEntry": false,
+>       "externalConsole": false,
+>       "cwd": "/home/aghlimi/Desktop/cursus/get_next_line",
+>       "program": "/home/aghlimi/Desktop/cursus/get_next_line/build/Debug/outDebug",
+>       "MIMode": "gdb",
+>       "miDebuggerPath": "gdb",
+17,19c17,19
+< ÀöÀang for gdb",
+< ˚.gÿVetty-printing",
+< €)gÿV: true
+---
+>           "description": "Enable pretty-printing for gdb",
+>           "text": "-enable-pretty-printing",
+>           "ignoreFailures": true
+============./.vscode/c_cpp_properties.json=============
+1c1
+< ßJ_{
+---
+> {
+4c4
+< : "linux-gcc-x64",
+---
+>       "name": "linux-gcc-x64",
+6c6
+< ®J_        "${workspaceFolder}/**"
+---
+>         "${workspaceFolder}/**"
+8,12c8,12
+< ®J_     "compilerPath": "/usr/bin/gcc",
+< ®J_ "cStandard": "${default}",
+< Ë…¨;ıUdard": "${default}",
+< de": "linux-gcc-x64",
+< Ë…¨;ıU: [
+---
+>       "compilerPath": "/usr/bin/gcc",
+>       "cStandard": "${default}",
+>       "cppStandard": "${default}",
+>       "intelliSenseMode": "linux-gcc-x64",
+>       "compilerArgs": [
+17c17
+< ®J_on": 4
+---
+>   "version": 4
+============./tester.sh=============
+1c1
+< ‹V#!/usr/bin/bash
+---
+> #!/usr/bin/bash
+3c3
+< ‹V -rf tests.txt
+---
+> rm -rf tests.txt
+5c5
+<  tests.txt
+---
+>     echo ============$item============= >> tests.txt
+7c7
+< HíÃóhUt $item >> tests.txt
+---
+>     diff t $item >> tests.txt
+============./tests.txt=============
+1c1
+< ˘}-_============./Makefile=============
+---
+> ============./Makefile=============
+3c3
+< ˘}-_YÂXCC = cc 
+---
+> < YÂXCC = cc 
+7c7
+< ˙}-_a
+---
+> < YÂXt.a
+11,12c11,12
+< ˘}-_EXEC): clean $(OBJ) $(SRC)
+< ˘}-_(SRC) 
+---
+> < ZÂX(EXEC): clean $(OBJ) $(SRC)
+> < JFDFÑU(OBJ) $(SRC) 
+15,16c15,16
+< ˘}-_> 	$(CC) -o $@ $(OBJ) $(SRC) 
+< ./get_next_line.c=============
+---
+> > 	$(CC) -o $@ $(OBJ) $(SRC) 
+> ============./get_next_line.c=============
+18,23c18,23
+<  *********************************** */
+< ˙}-_·%Êb                                 */
+< äﬁÚà˜U ·%Êb          :::      ::::::::   */
+< ˘}-_%Êb     :+:      :+:    :+:   */
+< ˘}-_:+ +:+         +:+     */
+< ÔÚà˜U       */
+---
+> < *********************************** */
+> < ·%Êb                                 */
+> < ·%Êb          :::      ::::::::   */
+> < ·%Êb     :+:      :+:    :+:   */
+> < ·%Êb+:+ +:+         +:+     */
+> < +:+       +#+        */
+25,26c25,26
+< ÔÚà˜UÊb+#             */
+< ˘}-_
+---
+> < ‚%Êb+#             */
+> < ‚%Êb##.fr       */
+30,40c30,40
+< ********************************* */
+< ˙}-_                                 */
+< ˙}-_            :::      ::::::::   */
+< ˙}-_         :+:      :+:    :+:   */
+< ˙}-_      +:+ +:+         +:+     */
+< ˙}-_   +#+  +:+       +#+        */
+< ˙}-_+#+#+#+#+#+   +#+           */
+< ˙}-_    #+#    #+#             */
+< ˙}-_  ###   ########.fr       */
+< ˙}-_                         */
+< *********************** */
+---
+> > /* ************************************************************************** */
+> > /*                                                                            */
+> > /*                                                        :::      ::::::::   */
+> > /*   get_next_line.c                                    :+:      :+:    :+:   */
+> > /*                                                    +:+ +:+         +:+     */
+> > /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> > /*                                                +#+#+#+#+#+   +#+           */
+> > /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
+> > /*   Updated: 2024/11/04 13:47:15 by aghlimi          ###   ########.fr       */
+> > /*                                                                            */
+> > /* ************************************************************************** */
+42c42
+< ÈÓÚà˜Ufromnl(char *buffer)
+---
+> < 7∏	ft_fromnl(char *buffer)
+44c44
+< ÈÓÚà˜Uchar *buffer)
+---
+> > void	ft_fromnl(char *buffer)
+48c48
+< ˘}-_
+---
+> > 	int	i;
+53c53
+< ©ﬁÚà˜U27c27
+---
+> 27c27
+56c56
+< ˘}-_le (buffer[nl])
+---
+> > 	while (buffer[nl])
+60c60
+< ˘}-_ 		buffer[i++] = buffer[nl++];
+---
+> > 		buffer[i++] = buffer[nl++];
+62,64c62,64
+< äﬁÚà˜Utrjoin(char const *s1, char const *s2)
+< ˘}-_
+< ˙}-_onst *s2)
+---
+> < °6∏trjoin(char const *s1, char const *s2)
+> ---
+> > char	*ft_strjoin(char const *s1, char const *s2)
+68c68
+< ˘}-_har	*str;
+---
+> > 	char	*str;
+70,71c70,71
+< äﬁÚà˜Us1) + ft_str_len(s2) + 1);
+< ˘}-_
+---
+> < ·%Êbc(ft_str_len(s1) + ft_str_len(s2) + 1);
+> < ·%Êbf (!str)
+73c73
+< äﬁÚà˜Utr_len(s2) + 1);
+---
+> > 	str = malloc(ft_str_len(s1) + ft_str_len(s2) + 1);
+76c76
+< ˘}-_if (s1)
+---
+> < "7∏	if (s1)
+80c80
+< ˘}-_i];
+---
+> < ‚%Êb= str[i];
+84c84
+< ˙}-_tr);
+---
+> < ·%Êbtr);
+88c88
+< ˙}-_‚%Êb= s2[j++];
+---
+> < ‚%Êb= s2[j++];
+90c90
+< ÈÓÚà˜U];
+---
+> > 			str[i++] = s2[j++];
+94,95c94,95
+< äﬁÚà˜Ud(int fd, char *buffer, char *result)
+< ˙}-_5
+---
+> > char	*ft_read(int fd, char *buffer, char *result)
+> 65c65
+100c100
+< ˙}-_hile (n > 0)
+---
+> < ‚%Êbhile (n > 0)
+104c104
+< ˘}-_ ·%Êbult;
+---
+> < ·%Êbult;
+108c108
+< ˘}-_b)
+---
+> < ·%Êb)
+112c112
+< ÈÓÚà˜U(result, tonl);
+---
+> < 7∏_strjoin(result, tonl);
+114c114
+< ÈÓÚà˜Un(result, tonl);
+---
+> > 		result = ft_strjoin(result, tonl);
+116,117c116,117
+< äﬁÚà˜Ufree(tonl), free(r), NULL);
+< ÈÓÚà˜U, tonl));
+---
+> < 7∏return (free(tonl), free(r), NULL);
+> < ∏((free(r), tonl));
+120,122c120,122
+< ˙}-_> 			return (free(tonl), free(r), NULL);
+< ˘}-_ 		free((free(r), tonl));
+< äﬁÚà˜Ut_str_len(result) - 1] == '\n')
+---
+> > 			return (free(tonl), free(r), NULL);
+> > 		free((free(r), tonl));
+> > 		if (result[ft_str_len(result) - 1] == '\n')
+124c124
+< ˘}-_∏ad(fd, buffer, BUFFER_SIZE);
+---
+> < 7∏ad(fd, buffer, BUFFER_SIZE);
+126c126
+< ˘}-_read(fd, buffer, BUFFER_SIZE);
+---
+> > 		n = read(fd, buffer, BUFFER_SIZE);
+128c128
+< ˙}-_b(buffer);
+---
+> < ·%Êb(buffer);
+131c131
+< ˙}-_7
+---
+> 87c87
+134c134
+< ÔÚà˜Uxt_line(int fd)
+---
+> > char	*get_next_line(int fd)
+137,138c137,138
+< ©ﬁÚà˜U---
+< äﬁÚà˜U;
+---
+> ---
+> > 	static char	buffer[BUFFER_SIZE + 1];
+142c142
+< ˙}-_
+---
+> > 	result = NULL;
+146c146
+< ˘}-_sult = ft_tonl(buffer);
+---
+> > 		result = ft_tonl(buffer);
+148c148
+< ˙}-_ULL);
+---
+> < ·%Êbrn (NULL);
+151c151
+< ˙}-_101
+---
+> 100,101c100,101
+153c153
+< ˙}-_esult);
+---
+> < °6∏buffer, result);
+155,162c155,162
+< ™ŸÚà˜Ur_len(result) - 1] != '\n') || !result)
+< ˙}-_		result = ft_read(fd, buffer, result);
+< ˙}-_==========./get_next_line.h=============
+< ˘}-_,11c1,11
+< JﬁÚà˜U**** */
+< JﬁÚà˜U      */
+< JﬁÚà˜U:   */
+< ÔÚà˜U/
+---
+> > 	if ((result && result[ft_str_len(result) - 1] != '\n') || !result)
+> > 		result = ft_read(fd, buffer, result);
+> ============./get_next_line.h=============
+> 1,11c1,11
+> < *********************************** */
+> < ËVlU                                 */
+> < ËVlU          :::      ::::::::   */
+> < ËVlU     :+:      :+:    :+:   */
+164,165c164,165
+< 	ŸÚà˜U      +#+        */
+< 	ŸÚà˜U   */
+---
+> < +:+       +#+        */
+> < ÈVlU+   +#+           */
+167c167
+< ˘}-_r       */
+---
+> < ÈVlU##.fr       */
+169c169
+< ˘}-_* */
+---
+> < π¬êSU***** */
+171,182c171,182
+< JﬁÚà˜U**** */
+< JﬁÚà˜U    */
+< JﬁÚà˜U   */
+< JﬁÚà˜U  */
+< JﬁÚà˜U */
+< JﬁÚà˜U*/
+< JﬁÚà˜U/
+< äﬁÚà˜U
+< ˙}-_hlimi          ###   ########.fr       */
+<                                       */
+< ˙}-_************************************ */
+< ˘}-_c14
+---
+> > /* ************************************************************************** */
+> > /*                                                                            */
+> > /*                                                        :::      ::::::::   */
+> > /*   get_next_line.h                                    :+:      :+:    :+:   */
+> > /*                                                    +:+ +:+         +:+     */
+> > /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> > /*                                                +#+#+#+#+#+   +#+           */
+> > /*   Created: 2024/11/01 21:54:05 by aghlimi           #+#    #+#             */
+> > /*   Updated: 2024/11/04 13:34:00 by aghlimi          ###   ########.fr       */
+> > /*                                                                            */
+> > /* ************************************************************************** */
+> 14c14
+185c185
+< 	ŸÚà˜Ue GET_NEXT_LINE_H
+---
+> > # define GET_NEXT_LINE_H
+187c187
+< ˙}-_.h>
+---
+> < ÈVlUlude <fcntl.h>
+191c191
+< ˘}-_de <stdlib.h>
+---
+> < ÈVlUde <stdlib.h>
+194c194
+< ©ﬁÚà˜U20c20
+---
+> 20c20
+197c197
+< ˘}-_BUFFER_SIZE
+---
+> > # ifndef BUFFER_SIZE
+201c201
+< ˙}-_f
+---
+> > # endif
+203,204c203,204
+< äﬁÚà˜U *text, char c);
+< ÈÓÚà˜Uxt);
+---
+> < 	‘êSUhar	*ft_addchar(char *text, char c);
+> < ˘’êSU*ft_tonl(char *text);
+207,208c207,208
+< äﬁÚà˜Uchar *text, char c);
+< 	ŸÚà˜U*text);
+---
+> > char	*ft_addchar(char *text, char c);
+> > char	*ft_tonl(char *text);
+210c210
+< ÈÓÚà˜U======./libft.h=============
+---
+> ============./libft.h=============
+212c212,214
+< äﬁÚà˜U********************************** */
+---
+> < *********************************** */
+> < 
+> < Ô Z                                 */
+214,215d215
+< JﬁÚà˜U Ô Z                                 */
+< ˙}-_ 
+217c217
+< ˘}-_ 
+---
+> < 
+220,222c220,222
+< ÍÓÚà˜U Ô Z+:+ +:+         +:+     */
+< ÔÚà˜U  +#+        */
+< ÈÓÚà˜U/
+---
+> < Ô Z+:+ +:+         +:+     */
+> < +:+       +#+        */
+> < Ô Z+   +#+           */
+224c224
+< ˘}-_    */
+---
+> < Ô Z##.fr       */
+226c226,2075
+< ˘}-_
+---
+> < [[–TßU***** */
+> ---
+> > /* ************************************************************************** */
+> > /*                                                                            */
+> > /*                                                        :::      ::::::::   */
+> > /*   libft.h                                            :+:      :+:    :+:   */
+> > /*                                                    +:+ +:+         +:+     */
+> > /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> > /*                                                +#+#+#+#+#+   +#+           */
+> > /*   Created: 2024/10/21 13:19:04 by aghlimi           #+#    #+#             */
+> > /*   Updated: 2024/10/27 12:01:43 by aghlimi          ###   ########.fr       */
+> > /*                                                                            */
+> > /* ************************************************************************** */
+> 18c14
+> < Ô Z
+> ---
+> > # define LIBFT_H
+> 21c17
+> < ÀM–TßU# include <unistd.h>
+> ---
+> > # include <unistd.h>
+> 23c19
+> < Ô Zt
+> ---
+> > typedef struct s_list
+> 26c22
+> < Ô Z;
+> ---
+> > 	struct s_list	*next;
+> 28,30c24,25
+> < ÍM–TßU
+> < 
+> < Ô Zize);
+> ---
+> > int					ft_isprint(int c);
+> > void				*ft_calloc(size_t count, size_t size);
+> 32,40c27,33
+> < ÍM–TßUist				*ft_lstlast(t_list *lst);
+> < 
+> < Ô Zt_lstadd_back(t_list **lst, t_list *new);
+> < ÎM–TßUt_list				*ft_lstnew(void *content);
+> < [[–TßUoid *));
+> < [[–TßU void (*del)(void *));
+> < JL–TßUt_list *lst, void (*f)(void *));
+> < 
+> < Ô Z),
+> ---
+> > t_list				*ft_lstlast(t_list *lst);
+> > void				ft_lstadd_back(t_list **lst, t_list *new);
+> > t_list				*ft_lstnew(void *content);
+> > void				ft_lstdelone(t_list *lst, void (*del)(void *));
+> > void				ft_lstclear(t_list **lst, void (*del)(void *));
+> > void				ft_lstiter(t_list *lst, void (*f)(void *));
+> > t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+> 42,46c35,39
+> < ÍM–TßUputnbr_fd(int n, int fd);
+> < ˙[–TßUlen(const char *s);
+> < ˙[–TßUchar c, int fd);
+> < JL–TßUconst *s1, char const *s2);
+> < JL–TßU;
+> ---
+> > void				ft_putnbr_fd(int n, int fd);
+> > size_t				ft_strlen(const char *s);
+> > void				ft_putchar_fd(char c, int fd);
+> > char				*ft_strjoin(char const *s1, char const *s2);
+> > void				*ft_memcpy(void *dst, const void *src, size_t n);
+> 48c41
+> < [[–TßUize_t len);
+> ---
+> > char				*ft_substr(char const *s, unsigned int start, size_t len);
+> 50,51c43
+> < ÎM–TßU					ft_isalnum(int c);
+> < L–TßU(int c);
+> ---
+> > int					ft_isalnum(int c);
+> 53,70c45,61
+> < 
+> < Ô Z		*ft_memset(void *b, int c, size_t len);
+> < [[–TßUsrc, size_t n);
+> < ÎM–TßUsize_t n);
+> < [[–TßUconst void *src, size_t len);
+> < [[–TßUt dstsize);
+> < [[–TßU, const char *src, size_t dstsize);
+> < L–TßU		ft_toupper(int c);
+> < L–TßUt c);
+> < JL–TßUt c, size_t n);
+> < JL–TßUhar *s, int c);
+> < JL–TßUchar *s, int c);
+> < [[–TßUchar *s1, const char *s2, size_t n);
+> < [[–TßU2, size_t n);
+> < [[–TßUar *haystack, const char *needle,
+> < 
+> < Ô Zze_t len);
+> < ˙[–TßU);
+> ---
+> > int					ft_isascii(int c);
+> > void				*ft_memset(void *b, int c, size_t len);
+> > void				*ft_memcpy(void *dst, const void *src, size_t n);
+> > void				ft_bzero(void *s, size_t n);
+> > void				*ft_memmove(void *dst, const void *src, size_t len);
+> > size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
+> > size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
+> > int					ft_toupper(int c);
+> > int					ft_tolower(int c);
+> > void				*ft_memchr(const void *s, int c, size_t n);
+> > char				*ft_strchr(const char *s, int c);
+> > char				*ft_strrchr(const char *s, int c);
+> > int					ft_strncmp(const char *s1, const char *s2, size_t n);
+> > int					ft_memcmp(const void *s1, const void *s2, size_t n);
+> > char				*ft_strnstr(const char *haystack, const char *needle,
+> > 						size_t len);
+> > int					ft_atoi(const char *str);
+> 72,83c63,73
+> < ˙[–TßU		ft_putstr_fd(char *s, int fd);
+> < äL–TßU*ft_split(char const *s, char c);
+> < äL–TßUft_putendl_fd(char *s, int fd);
+> < 
+> < [[–TßU, char *));
+> < [[–TßU *s, char (*f)(unsigned int, char));
+> < ÎM–TßU			*ft_itoa(int n);
+> < ÎM–TßUst char *s1);
+> < [[–TßU void (*f)(unsigned int, char *));
+> < 
+> < Ô Zet);
+> < JL–TßU t_list *new);
+> ---
+> > void				ft_putstr_fd(char *s, int fd);
+> > char				**ft_split(char const *s, char c);
+> > void				ft_putendl_fd(char *s, int fd);
+> > 
+> > void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+> > char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+> > char				*ft_itoa(int n);
+> > char				*ft_strdup(const char *s1);
+> > void				ft_striteri(char *s, void (*f)(unsigned int, char *));
+> > char				*ft_strtrim(char const *s1, char const *set);
+> > void				ft_lstadd_front(t_list **lst, t_list *new);
+> ============./libft.a=============
+> Binary files t and ./libft.a differ
+> ============./get_next_line_utils.c=============
+> 1,11c1,11
+> < *********************************** */
+> < —\                                 */
+> < —\          :::      ::::::::   */
+> < —\     :+:      :+:    :+:   */
+> < —\+:+ +:+         +:+     */
+> < +:+       +#+        */
+> < “\+   +#+           */
+> < “\+#             */
+> < “\##.fr       */
+> < “\         */
+> < Ç%Ì\ U***** */
+> ---
+> > /* ************************************************************************** */
+> > /*                                                                            */
+> > /*                                                        :::      ::::::::   */
+> > /*   get_next_line_utils.c                              :+:      :+:    :+:   */
+> > /*                                                    +:+ +:+         +:+     */
+> > /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
+> > /*                                                +#+#+#+#+#+   +#+           */
+> > /*   Created: 2024/11/01 21:56:35 by aghlimi           #+#    #+#             */
+> > /*   Updated: 2024/11/04 13:36:55 by aghlimi          ###   ########.fr       */
+> > /*                                                                            */
+> > /* ************************************************************************** */
+> 15c15
+> < 1Ì\ Uft_str_len(const char *text)
+> ---
+> > int	ft_str_len(const char *text)
+> 19c19
+> < —\ = 0;
+> ---
+> > 	i = 0;
+> 22c22
+> < —\
+> ---
+> > 			i++;
+> 26c26
+> < 1Ì\ Uxt, char c)
+> ---
+> > char	*ft_addchar(char *text, char c)
+> 31,32c31,32
+> < —\	result = malloc(ft_str_len(text) + 2);
+> < “\f (result == NULL)
+> ---
+> > 	result = malloc(ft_str_len(text) + 2);
+> > 	if (result == NULL)
+> 34c34
+> < —\ext)
+> ---
+> > 	if (text)
+> 38c38
+> < ¬Ì\ U = text[i];
+> ---
+> > 			result[i] = text[i];
+> 43c43
+> < qÌ\ U	result[i++] = c;
+> ---
+> > 	result[i++] = c;
+> 45c45
+> < “\(result);
+> ---
+> > 	return (result);
+> 50c50
+> < —\int		i;
+> ---
+> > 	int		i;
+> 54c54
+> < —\NULL;
+> ---
+> > 	result = NULL;
+> 57c57
+> < QÌ\ Udchar(result, text[i]);
+> ---
+> > 		result = ft_addchar(result, text[i]);
+> 59c59
+> < —\return (NULL);
+> ---
+> > 			return (NULL);
+> 61c61
+> < —\eturn (result);
+> ---
+> > 			return (result);
+> 66c66
+> < ¬Ì\ Ut	firstnl(char *text)
+> ---
+> > int	firstnl(char *text)
+> 71c71
+> < —\while (text[i])
+> ---
+> > 	while (text[i])
+> 74c74
+> < ·%Ì\ U			return (i);
+> ---
+> > 			return (i);
+> ============./.git/info/exclude=============
+> 1,4c1,4
+> < t/info/exclude
+> < zƒK–fU are comments.
+> < :g8V, the following would be a good set of
+> < :g8Vt to use them):
+> ---
+> > # git ls-files --others --exclude-from=.git/info/exclude
+> > # Lines that start with '#' are comments.
+> > # For a project mostly in C, the following would be a good set of
+> > # exclude patterns (uncomment them if you want to use them):
+> ============./.git/hooks/fsmonitor-watchman.sample=============
+> 1c1
+> < #[#!/usr/bin/perl
+> ---
+> > #!/usr/bin/perl
+> 4c4
+> < 
+> ---
+> > use warnings;
+> 7,8c7,8
+> <  to integrate Watchman
+> < º∆sk∑U detecting
+> ---
+> > # An example hook script to integrate Watchman
+> > # (https://facebook.github.io/watchman/) with git to speed up detecting
+> 11,14c11,14
+> < #[and last update token
+> < L∆sk∑Uen and
+> < #[ since the update token. Paths must
+> < d separated by a single NUL.
+> ---
+> > # The hook is passed a version (currently 2) and last update token
+> > # formatted as a string and outputs to stdout a new update token and
+> > # all files that have been modified since the update token. Paths must
+> > # be relative to the root of the working tree and separated by a single NUL.
+> 16,17c16,17
+> < #[chman" and set
+> < #[r .git/hooks/query-watchman'
+> ---
+> > # To enable this hook, rename this file to "query-watchman" and set
+> > # 'git config core.fsmonitor .git/hooks/query-watchman'
+> 19c19
+> < L∆sk∑Un, $last_update_token) = @ARGV;
+> ---
+> > my ($version, $last_update_token) = @ARGV;
+> 21,22c21,22
+> < å∆sk∑Unt for debugging
+> < L∆sk∑Uon $last_update_token\n";
+> ---
+> > # Uncomment for debugging
+> > # print STDERR "$0 $version $last_update_token\n";
+> 24c24
+> < å∆sk∑Uk interface version
+> ---
+> > # Check the hook interface version
+> 26,27c26,27
+> < #[ion '$version'.\n" .
+> < L¡sk∑U scanning...\n";
+> ---
+> > 	die "Unsupported query-fsmonitor hook version '$version'.\n" .
+> > 	    "Falling back to scanning...\n";
+> 30c30
+> < L¡sk∑Ut_working_dir();
+> ---
+> > my $git_work_tree = get_working_dir();
+> 34c34
+> < #[_pkg;
+> ---
+> > my $json_pkg;
+> 37c37
+> < L¡sk∑U = "JSON::XS";
+> ---
+> > 	$json_pkg = "JSON::XS";
+> 40c40
+> < #[::PP;
+> ---
+> > 	require JSON::PP;
+> 44c44
+> < #[watchman();
+> ---
+> > launch_watchman();
+> 47,49c47,49
+> < å∆sk∑U= watchman_query();
+> < å∆sk∑Uhed($o)) {
+> < º∆sk∑U$o->{files}});
+> ---
+> > 	my $o = watchman_query();
+> > 	if (is_work_tree_watched($o)) {
+> > 		output_result($o->{clock}, @{$o->{files}});
+> 54c54
+> < ∆sk∑Umy ($clockid, @files) = @_;
+> ---
+> > 	my ($clockid, @files) = @_;
+> 56,59c56,59
+> < º∆sk∑Ufor debugging watchman output
+> < º∆sk∑U$fh, ">", ".git/watchman-output.out");
+> < L¡sk∑Ubinmode $fh, ":utf8";
+> < L¡sk∑Uid\n@files\n";
+> ---
+> > 	# Uncomment for debugging watchman output
+> > 	# open (my $fh, ">", ".git/watchman-output.out");
+> > 	# binmode $fh, ":utf8";
+> > 	# print $fh "$clockid\n@files\n";
+> 62c62
+> < L¡sk∑UOUT, ":utf8";
+> ---
+> > 	binmode STDOUT, ":utf8";
+> 64c64
+> < #[;
+> ---
+> > 	print "\0";
+> 69,72c69,72
+> < #[watchman_clock {
+> < º∆sk∑Uan clock "$git_work_tree"/;
+> < #[o get clock id on '$git_work_tree'.\n" .
+> < #[0;
+> ---
+> > sub watchman_clock {
+> > 	my $response = qx/watchman clock "$git_work_tree"/;
+> > 	die "Failed to get clock id on '$git_work_tree'.\n" .
+> > 		"Falling back to scanning...\n" if $? != 0;
+> 74c74
+> < º∆sk∑Uresponse);
+> ---
+> > 	return $json_pkg->new->utf8->decode($response);
+> 78,80c78,80
+> < #[ -j --no-pretty')
+> < ∆sk∑U $!\n" .
+> < ∆sk∑U
+> ---
+> > 	my $pid = open2(\*CHLD_OUT, \*CHLD_IN, 'watchman -j --no-pretty')
+> > 	or die "open2() failed: $!\n" .
+> > 	"Falling back to scanning...\n";
+> 82,83c82,83
+> < #[sking for names of files that
+> < #[git folder.
+> ---
+> > 	# In the query expression below we're asking for names of files that
+> > 	# changed since $last_update_token but not from the .git folder.
+> 85,90c85,90
+> < #[e using the "since" generator to use the
+> < #[and "fields" to limit the
+> < sion" term to
+> < å∆sk∑Uults.
+> < º∆sk∑U) eq "c") {
+> < º∆sk∑Ut_update_token\"";
+> ---
+> > 	# To accomplish this, we're using the "since" generator to use the
+> > 	# recency index to select candidate nodes and "fields" to limit the
+> > 	# output to file names only. Then we're using the "expression" term to
+> > 	# further constrain the results.
+> > 	if (substr($last_update_token, 0, 1) eq "c") {
+> > 		$last_update_token = "\"$last_update_token\"";
+> 92c92
+> < #[";
+> ---
+> > 	my $query = <<"	END";
+> 94,96c94,96
+> < å∆sk∑Uce": $last_update_token,
+> < #[me"],
+> < º∆sk∑U ".git"]]
+> ---
+> > 			"since": $last_update_token,
+> > 			"fields": ["name"],
+> > 			"expression": ["not", ["dirname", ".git"]]
+> 100,102c100,102
+> < º∆sk∑Ugging the watchman query
+> < º∆sk∑U">", ".git/watchman-query.json");
+> < #[ $fh $query;
+> ---
+> > 	# Uncomment for debugging the watchman query
+> > 	# open (my $fh, ">", ".git/watchman-query.json");
+> > 	# print $fh $query;
+> 105c105
+> < #[ $query;
+> ---
+> > 	print CHLD_IN $query;
+> 107c107
+> < º∆sk∑Uo {local $/; <CHLD_OUT>};
+> ---
+> > 	my $response = do {local $/; <CHLD_OUT>};
+> 109,111c109,111
+> < º∆sk∑Ur debugging the watch response
+> < #[h, ">", ".git/watchman-response.json");
+> < ∆sk∑U print $fh $response;
+> ---
+> > 	# Uncomment for debugging the watch response
+> > 	# open ($fh, ">", ".git/watchman-response.json");
+> > 	# print $fh $response;
+> 114,117c114,117
+> < #[.
+> < #[ponse eq "";
+> < ¸∆sk∑Uned invalid output: $response\n" .
+> < ¸∆sk∑U =~ /^\{/;
+> ---
+> > 	die "Watchman: command returned no output.\n" .
+> > 	"Falling back to scanning...\n" if $response eq "";
+> > 	die "Watchman: command returned invalid output: $response\n" .
+> > 	"Falling back to scanning...\n" unless $response =~ /^\{/;
+> 119c119
+> < L∆sk∑Udecode($response);
+> ---
+> > 	return $json_pkg->new->utf8->decode($response);
+> 122c122
+> < å∆sk∑Uched {
+> ---
+> > sub is_work_tree_watched {
+> 124,130c124,130
+> < å∆sk∑Uutput->{error};
+> < #[ directory (.*) is not watched/) {
+> < #[y--;
+> < L∆sk∑Ugit_work_tree"/;
+> < ¸∆sk∑Uchman watch '$git_work_tree'.\n" .
+> < #[
+> < #[$response);
+> ---
+> > 	my $error = $output->{error};
+> > 	if ($retry > 0 and $error and $error =~ m/unable to resolve root .* directory (.*) is not watched/) {
+> > 		$retry--;
+> > 		my $response = qx/watchman watch "$git_work_tree"/;
+> > 		die "Failed to make watchman watch '$git_work_tree'.\n" .
+> > 		    "Falling back to scanning...\n" if $? != 0;
+> > 		$output = $json_pkg->new->utf8->decode($response);
+> 132,133c132,133
+> < ∆sk∑U	die "Watchman: $error.\n" .
+> < L∆sk∑Uck to scanning...\n" if $error;
+> ---
+> > 		die "Watchman: $error.\n" .
+> > 		"Falling back to scanning...\n" if $error;
+> 135,136c135,136
+> < L∆sk∑Ument for debugging watchman output
+> < #[);
+> ---
+> > 		# Uncomment for debugging watchman output
+> > 		# open (my $fh, ">", ".git/watchman-output.out");
+> 139,142c139,142
+> < ¸∆sk∑Us return all files on the first query so
+> < ¸∆sk∑Ulag to git and do the
+> < L∆sk∑Uy
+> < #[vidual file.
+> ---
+> > 		# Watchman will always return all files on the first query so
+> > 		# return the fast "everything is dirty" flag to git and do the
+> > 		# Watchman query just to get it over with now so we won't pay
+> > 		# the cost in git to look up each individual file.
+> 144c144
+> < ∆sk∑U	$error = $output->{error};
+> ---
+> > 		$error = $output->{error};
+> 146,147c146,147
+> < L¡sk∑Uan: $error.\n" .
+> < º∆sk∑Ung...\n" if $error;
+> ---
+> > 		die "Watchman: $error.\n" .
+> > 		"Falling back to scanning...\n" if $error;
+> 149,150c149,150
+> < å∆sk∑Uclock}, ("/"));
+> < ∆sk∑U>{clock};
+> ---
+> > 		output_result($o->{clock}, ("/"));
+> > 		$last_update_token = $o->{clock};
+> 153c153
+> < #[	return 0;
+> ---
+> > 		return 0;
+> 156,157c156,157
+> < ∆sk∑U.
+> < #[or;
+> ---
+> > 	die "Watchman: $error.\n" .
+> > 	"Falling back to scanning...\n" if $error;
+> 163,165c163,165
+> < #[my $working_dir;
+> < L∆sk∑U =~ 'cygwin') {
+> < ∆sk∑UtCwd();
+> ---
+> > 	my $working_dir;
+> > 	if ($^O =~ 'msys' || $^O =~ 'cygwin') {
+> > 		$working_dir = Win32::GetCwd();
+> 167c167
+> < #[se {
+> ---
+> > 	} else {
+> 169c169
+> < L¡sk∑Ucwd();
+> ---
+> > 		$working_dir = Cwd::cwd();
+> ============./.git/hooks/post-update.sample=============
+> 1c1
+> < P∑_#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,4c3,4
+> < epare a packed repository for use over
+> < P∑_umb transports.
+> ---
+> > # An example hook script to prepare a packed repository for use over
+> > # dumb transports.
+> 6c6
+> < Q∑_ename this file to "post-update".
+> ---
+> > # To enable this hook, rename this file to "post-update".
+> 8c8
+> < §~‰ıUt update-server-info
+> ---
+> > exec git update-server-info
+> ============./.git/hooks/pre-commit.sample=============
+> 1c1
+> < UPË_#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,6c3,6
+> < rify what is about to be committed.
+> < VPË_ hook should
+> < VPË_fter issuing an appropriate message if
+> < ¶2Ì⁄˚Ut wants to stop the commit.
+> ---
+> > # An example hook script to verify what is about to be committed.
+> > # Called by "git commit" with no arguments.  The hook should
+> > # exit with non-zero status after issuing an appropriate message if
+> > # it wants to stop the commit.
+> 8c8
+> < VPË_".
+> ---
+> > # To enable this hook, rename this file to "pre-commit".
+> 10c10
+> < ¶3Ì⁄˚Uull 2>&1
+> ---
+> > if git rev-parse --verify HEAD >/dev/null 2>&1
+> 14,15c14,15
+> < VPË_t
+> < VPË_null)
+> ---
+> > 	# Initial commit: diff against an empty tree object
+> > 	against=$(git hash-object -t tree /dev/null)
+> 18,19c18,19
+> < VPË_ filenames set this variable to true.
+> < VPË_llownonascii)
+> ---
+> > # If you want to allow non-ASCII filenames set this variable to true.
+> > allownonascii=$(git config --type=bool hooks.allownonascii)
+> 21c21
+> < ¶2Ì⁄˚U.
+> ---
+> > # Redirect output to stderr.
+> 24,32c24,32
+> < VPË_d to avoid non-ASCII filenames; prevent
+> < e exploit the fact that the
+> <  with tilde.
+> < 3Ì⁄˚Ue" ] &&
+> < ÷3Ì⁄˚Uround a tr range is ok here, (it's
+> < ÷3Ì⁄˚U /usr/bin/tr), since
+> < ¶3Ì⁄˚Unge.
+> < ÷3Ì⁄˚U --diff-filter=A -z $against |
+> < ¶3Ì⁄˚U tr -d '[ -~]\0' | wc -c) != 0
+> ---
+> > # Cross platform projects tend to avoid non-ASCII filenames; prevent
+> > # them from being added to the repository. We exploit the fact that the
+> > # printable range starts at the space character and ends with tilde.
+> > if [ "$allownonascii" != "true" ] &&
+> > 	# Note that the use of brackets around a tr range is ok here, (it's
+> > 	# even required, for portability to Solaris 10's /usr/bin/tr), since
+> > 	# the square bracket bytes happen to fall in the designated range.
+> > 	test $(git diff --cached --name-only --diff-filter=A -z $against |
+> > 	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+> 34,35c34,35
+> < UPË_<\EOF
+> < ¶3Ì⁄˚Ule name.
+> ---
+> > 	cat <<\EOF
+> > Error: Attempt to add a non-ASCII file name.
+> 37c37
+> < ¶3Ì⁄˚U.
+> ---
+> > This can cause problems if you want to work with people on other platforms.
+> 39c39
+> < ¶3Ì⁄˚Ue the file.
+> ---
+> > To be portable it is advisable to rename the file.
+> 41c41
+> < ÷3Ì⁄˚Ug you can disable this check using:
+> ---
+> > If you know what you are doing you can disable this check using:
+> 43c43
+> < ¶2Ì⁄˚U config hooks.allownonascii true
+> ---
+> >   git config hooks.allownonascii true
+> 45c45
+> < UPË_ 1
+> ---
+> > 	exit 1
+> 48,49c48,49
+> < VPË_rint the offending file names and fail.
+> < VPË_t --
+> ---
+> > # If there are whitespace errors, print the offending file names and fail.
+> > exec git diff-index --check --cached $against --
+> ============./.git/hooks/update.sample=============
+> 1c1
+> < ‘◊c#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,4c3,4
+> < ock unannotated tags from entering.
+> < efname sha1-old sha1-new
+> ---
+> > # An example hook script to block unannotated tags from entering.
+> > # Called by "git receive-pack" with arguments: refname sha1-old sha1-new
+> 6c6
+> < %Ñçn:Vs hook, rename this file to "update".
+> ---
+> > # To enable this hook, rename this file to "update".
+> 8c8
+> < ’◊cConfig
+> ---
+> > # Config
+> 11,17c11,17
+> < ’◊cags will be allowed into the
+> < ÂÉçn:Vy.  By default they won't be.
+> < ‘◊cwdeletetag
+> < ’◊celeting tags will be allowed in the
+> < ÂÉçn:Vpository.  By default they won't be.
+> < ‘◊cks.allowmodifytag
+> < . By default
+> ---
+> > #   This boolean sets whether unannotated tags will be allowed into the
+> > #   repository.  By default they won't be.
+> > # hooks.allowdeletetag
+> > #   This boolean sets whether deleting tags will be allowed in the
+> > #   repository.  By default they won't be.
+> > # hooks.allowmodifytag
+> > #   This boolean sets whether a tag may be modified after creation. By default
+> 19,21c19,21
+> < ÖÑçn:Vwdeletebranch
+> < ÂÉçn:V
+> < ’◊c.
+> ---
+> > # hooks.allowdeletebranch
+> > #   This boolean sets whether deleting branches will be allowed in the
+> > #   repository.  By default they won't be.
+> 23,24c23,24
+> < ’◊cwill be denied
+> < ÂÉçn:Vdefault this is allowed.
+> ---
+> > #   This boolean sets whether remotely creating branches will be denied
+> > #   in the repository.  By default this is allowed.
+> 27c27
+> < ‘◊cline
+> ---
+> > # --- Command line
+> 31c31
+> < uïçn:V
+> ---
+> > 
+> 33,37c33,37
+> < ıÑçn:Vthen
+> < Éçn:V command line." >&2
+> < Éçn:Vyou could supply GIT_DIR then run" >&2
+> < ÂÉçn:Vho "  $0 <ref> <oldrev> <newrev>)" >&2
+> < ‘◊cit 1
+> ---
+> > if [ -z "$GIT_DIR" ]; then
+> > 	echo "Don't run this script from the command line." >&2
+> > 	echo " (if you want, you could supply GIT_DIR then run" >&2
+> > 	echo "  $0 <ref> <oldrev> <newrev>)" >&2
+> > 	exit 1
+> 40,41c40,41
+> < Éçn:V" -o -z "$newrev" ]; then
+> < ÂÉçn:V <ref> <oldrev> <newrev>" >&2
+> ---
+> > if [ -z "$refname" -o -z "$oldrev" -o -z "$newrev" ]; then
+> > 	echo "usage: $0 <ref> <oldrev> <newrev>" >&2
+> 45,50c45,50
+> < Ñçn:V# --- Config
+> < Éçn:V --type=bool hooks.allowunannotated)
+> < Éçn:Vs.allowdeletebranch)
+> < %Ñçn:Vh)
+> < Éçn:V hooks.allowdeletetag)
+> < %Ñçn:V
+> ---
+> > # --- Config
+> > allowunannotated=$(git config --type=bool hooks.allowunannotated)
+> > allowdeletebranch=$(git config --type=bool hooks.allowdeletebranch)
+> > denycreatebranch=$(git config --type=bool hooks.denycreatebranch)
+> > allowdeletetag=$(git config --type=bool hooks.allowdeletetag)
+> > allowmodifytag=$(git config --type=bool hooks.allowmodifytag)
+> 53,56c53,56
+> < %Ñçn:V(sed -e '1q' "$GIT_DIR/description")
+> < ‘◊c"$projectdesc" in
+> < ıÑçn:V"")
+> < Éçn:Vsn't been set" >&2
+> ---
+> > projectdesc=$(sed -e '1q' "$GIT_DIR/description")
+> > case "$projectdesc" in
+> > "Unnamed repository"* | "")
+> > 	echo "*** Project description file hasn't been set" >&2
+> 61,64c61,64
+> < ‘◊c Check types
+> < Éçn:Vit's a commit to delete a ref.
+> < Éçn:V-f]' '0')
+> < ÖÑçn:V
+> ---
+> > # --- Check types
+> > # if $newrev is 0000...0000, it's a commit to delete a ref.
+> > zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+> > if [ "$newrev" = "$zero" ]; then
+> 67c67
+> < ÂÉçn:Vit cat-file -t $newrev)
+> ---
+> > 	newrev_type=$(git cat-file -t $newrev)
+> 70c70
+> < %Öçn:V","$newrev_type" in
+> ---
+> > case "$refname","$newrev_type" in
+> 72,76c72,76
+> < ‘◊c	# un-annotated tag
+> < %Öçn:Vame##refs/tags/}
+> < ÂÉçn:V" != "true" ]; then
+> < ’◊cd in this repository" >&2
+> < ’◊co propagate." >&2
+> ---
+> > 		# un-annotated tag
+> > 		short_refname=${refname##refs/tags/}
+> > 		if [ "$allowunannotated" != "true" ]; then
+> > 			echo "*** The un-annotated tag, $short_refname, is not allowed in this repository" >&2
+> > 			echo "*** Use 'git tag [ -a | -s ]' for tags you want to propagate." >&2
+> 80c80
+> < ’◊cs/tags/*,delete)
+> ---
+> > 	refs/tags/*,delete)
+> 82,83c82,83
+> < ÂÉçn:Vllowdeletetag" != "true" ]; then
+> < UÑçn:Vrepository" >&2
+> ---
+> > 		if [ "$allowdeletetag" != "true" ]; then
+> > 			echo "*** Deleting a tag is not allowed in this repository" >&2
+> 87c87
+> < ‘◊ctags/*,tag)
+> ---
+> > 	refs/tags/*,tag)
+> 89c89
+> < ’◊c$refname > /dev/null 2>&1
+> ---
+> > 		if [ "$allowmodifytag" != "true" ] && git rev-parse $refname > /dev/null 2>&1
+> 91,92c91,92
+> < ’◊c*** Tag '$refname' already exists." >&2
+> < ’◊cin this repository." >&2
+> ---
+> > 			echo "*** Tag '$refname' already exists." >&2
+> > 			echo "*** Modifying a tag is not allowed in this repository." >&2
+> 95c95
+> < ’◊c;;
+> ---
+> > 		;;
+> 98,99c98,99
+> < UÑçn:V" = "true" ]; then
+> < %Ñçn:V >&2
+> ---
+> > 		if [ "$oldrev" = "$zero" -a "$denycreatebranch" = "true" ]; then
+> > 			echo "*** Creating a branch is not allowed in this repository" >&2
+> 103c103
+> < ‘◊cete)
+> ---
+> > 	refs/heads/*,delete)
+> 105,106c105,106
+> < %Ñçn:Vebranch" != "true" ]; then
+> < ’◊cository" >&2
+> ---
+> > 		if [ "$allowdeletebranch" != "true" ]; then
+> > 			echo "*** Deleting a branch is not allowed in this repository" >&2
+> 110c110
+> < ıÑçn:Votes/*,commit)
+> ---
+> > 	refs/remotes/*,commit)
+> 113,116c113,116
+> < ıÑçn:Vefs/remotes/*,delete)
+> < ıÑçn:Vbranch
+> < %Ñçn:Ve" ]; then
+> < %Ñçn:V" >&2
+> ---
+> > 	refs/remotes/*,delete)
+> > 		# delete tracking branch
+> > 		if [ "$allowdeletebranch" != "true" ]; then
+> > 			echo "*** Deleting a tracking branch is not allowed in this repository" >&2
+> 121,123c121,123
+> < %Ñçn:V else (is there anything else?)
+> < ’◊cef $refname of type $newrev_type" >&2
+> < ‘◊cit 1
+> ---
+> > 		# Anything else (is there anything else?)
+> > 		echo "*** Update hook: unknown type of update to ref $refname of type $newrev_type" >&2
+> > 		exit 1
+> ============./.git/hooks/applypatch-msg.sample=============
+> 1c1
+> < MZ•b#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,4c3,4
+> < eck the commit log message taken by
+> < π7/Vypatch from an e-mail message.
+> ---
+> > # An example hook script to check the commit log message taken by
+> > # applypatch from an e-mail message.
+> 6,8c6,8
+> < NZ•bssuing an
+> < NZ•bs to stop the commit.  The hook is
+> < æπ7/Ved to edit the commit message file.
+> ---
+> > # The hook should exit with non-zero status after issuing an
+> > # appropriate message if it wants to stop the commit.  The hook is
+> > # allowed to edit the commit message file.
+> 10c10
+> < NZ•bplypatch-msg".
+> ---
+> > # To enable this hook, rename this file to "applypatch-msg".
+> 13,14c13,14
+> < NZ•bg)"
+> < ~æ7/Vsg" ${1+"$@"}
+> ---
+> > commitmsg="$(git rev-parse --git-path hooks/commit-msg)"
+> > test -x "$commitmsg" && exec "$commitmsg" ${1+"$@"}
+> ============./.git/hooks/prepare-commit-msg.sample=============
+> 1c1
+> < '«c#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,8c3,8
+> < epare the commit log message.
+> < («ct has the
+> < («ce description of the commit
+> < ÿD|è5Vommit
+> < («cith a non-zero status,
+> < D|è5Vrted.
+> ---
+> > # An example hook script to prepare the commit log message.
+> > # Called by "git commit" with the name of the file that has the
+> > # commit message, followed by the description of the commit
+> > # message's source.  The hook's purpose is to edit the commit
+> > # message file.  If the hook fails with a non-zero status,
+> > # the commit is aborted.
+> 10c10
+> < («c file to "prepare-commit-msg".
+> ---
+> > # To enable this hook, rename this file to "prepare-commit-msg".
+> 12,13c12,13
+> < («cemoves the
+> < C|è5Vssage..." help message.
+> ---
+> > # This hook includes three examples. The first one removes the
+> > # "# Please enter the commit message..." help message.
+> 15,17c15,17
+> < C|è5Vs -r"
+> < («c"git status" output.  It is
+> <  squashed
+> ---
+> > # The second includes the output of "git diff --name-status -r"
+> > # into the message, just before the "git status" output.  It is
+> > # commented because it doesn't cope with --amend or with squashed
+> 20,21c20,21
+> < («c that can
+> < C|è5Vly a good idea.
+> ---
+> > # The third example adds a Signed-off-by line to the message, that can
+> > # still be edited.  This is rarely a good idea.
+> 24c24
+> < '«c_SOURCE=$2
+> ---
+> > COMMIT_SOURCE=$2
+> 27,28c27,28
+> < mit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+> < Ëµ|è5V
+> ---
+> > /usr/bin/perl -i.bak -ne 'print unless(m/^. Please enter the commit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+> > 
+> 30c30
+> < («cplate,)
+> ---
+> > #  ,|template,)
+> 32,33c32,33
+> < XC|è5Vme-status -r`
+> < ÿD|è5V' "$COMMIT_MSG_FILE" ;;
+> ---
+> > #       print "\n" . `git diff --cached --name-status -r`
+> > # 	 if /^#/ && $first++ == 0' "$COMMIT_MSG_FILE" ;;
+> 37,39c37,39
+> < n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+> < («c "$SOB" "$COMMIT_MSG_FILE"
+> < ÿE|è5VCOMMIT_SOURCE"
+> ---
+> > # SOB=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+> > # git interpret-trailers --in-place --trailer "$SOB" "$COMMIT_MSG_FILE"
+> > # if test -z "$COMMIT_SOURCE"
+> 41c41
+> < («cCOMMIT_MSG_FILE"
+> ---
+> > #   /usr/bin/perl -i.bak -pe 'print "\n" if !$first_line++' "$COMMIT_MSG_FILE"
+> ============./.git/hooks/pre-rebase.sample=============
+> 1c1
+> < >/n^#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3c3
+> < io C Hamano
+> ---
+> > # Copyright (c) 2006, 2008 Junio C Hamano
+> 5,7c5,7
+> < un just before "git rebase" starts doing
+> <  running by exiting with
+> < >/n^.
+> ---
+> > # The "pre-rebase" hook is run just before "git rebase" starts doing
+> > # its job, and can prevent the command from running by exiting with
+> > # non-zero status.
+> 9c9
+> < ˇ‹ùº„Ug parameters:
+> ---
+> > # The hook is called with the following parameters:
+> 11,12c11,12
+> < ˇ‹ùº„Ueries was forked from.
+> < current branch).
+> ---
+> > # $1 -- the upstream the series was forked from.
+> > # $2 -- the branch being rebased (or empty when rebasing the current branch).
+> 14,16c14,16
+> < ˇ‹ùº„Uy
+> < ?€ùº„Uebased, because allowing it
+> < ?/n^ in rebasing already published history.
+> ---
+> > # This sample shows how to prevent topic branches that are already
+> > # merged to 'next' branch from getting rebased, because allowing it
+> > # would result in rebasing already published history.
+> 18c18
+> < ?/n^ublish=next
+> ---
+> > publish=next
+> 20c20
+> < >/n^ 2
+> ---
+> > if test "$#" = 2
+> 24,26c24,26
+> < ‹ùº„U=`git symbolic-ref HEAD` ||
+> < ?/n^do not interrupt rebasing detached HEAD
+> < ?/n^
+> ---
+> > 	topic=`git symbolic-ref HEAD` ||
+> > 	exit 0 ;# we do not interrupt rebasing detached HEAD
+> > fi
+> 31c31
+> < >/n^
+> ---
+> > *)
+> 33c33
+> < >/n^;
+> ---
+> > 	;;
+> 36,37c36,37
+> < ˇ‹ùº„Ubranch being rebased
+> < ˇ‹ùº„UIs it OK to rebase it?
+> ---
+> > # Now we are dealing with a topic branch being rebased
+> > # on top of master.  Is it OK to rebase it?
+> 39,40c39,40
+> < œ›ùº„Ueally exist?
+> < ‹ùº„U
+> ---
+> > # Does the topic really exist?
+> > git show-ref -q "$topic" || {
+> 42c42
+> < >/n^
+> ---
+> > 	exit 1
+> 46,47c46,47
+> < ?€ùº„U^master "$topic"`
+> < ‹ùº„Uer"
+> ---
+> > not_in_master=`git rev-list --pretty=oneline ^master "$topic"`
+> > if test -z "$not_in_master"
+> 49,56c49,56
+> < ?€ùº„U to master; better remove it."
+> < ?/n^we could allow it, but there is no point.
+> < n€ùº„Ufi
+> < 
+> < ?€ùº„U you should not be rebasing it.
+> < ?€ùº„Uh} | sort`
+> < ?€ùº„Uer           ${publish} | sort`
+> < o‹ùº„Uonly_next_1" = "$only_next_2"
+> ---
+> > 	echo >&2 "$topic is fully merged to master; better remove it."
+> > 	exit 1 ;# we could allow it, but there is no point.
+> > fi
+> > 
+> > # Is topic ever merged to next?  If so you should not be rebasing it.
+> > only_next_1=`git rev-list ^master "^$topic" ${publish} | sort`
+> > only_next_2=`git rev-list ^master           ${publish} | sort`
+> > if test "$only_next_1" = "$only_next_2"
+> 58,59c58,59
+> < o‹ùº„U_topic=`git rev-list "^$topic" master`
+> < œ›ùº„U test -z "$not_in_topic"
+> ---
+> > 	not_in_topic=`git rev-list "^$topic" master`
+> > 	if test -z "$not_in_topic"
+> 61,62c61,62
+> < ?/n^
+> < ?/n^is no point.
+> ---
+> > 		echo >&2 "$topic is already up to date with master"
+> > 		exit 1 ;# we could allow it, but there is no point.
+> 67c67
+> < ?€ùº„Upublish} "$topic"`
+> ---
+> > 	not_in_next=`git rev-list --pretty=oneline ^${publish} "$topic"`
+> 69,70c69,70
+> < ‹ùº„Uy $topic = $ARGV[0];
+> < ?/n^ch:\n";
+> ---
+> > 		my $topic = $ARGV[0];
+> > 		my $msg = "* $topic has commits already merged to public branch:\n";
+> 72c72
+> < >/n^[0-9a-f]+) /;
+> ---
+> > 			/^([0-9a-f]+) /;
+> 74c74
+> < Ø‹ùº„U, $ARGV[1]);
+> ---
+> > 		} split(/\n/, $ARGV[1]);
+> 76c76
+> < Ø‹ùº„U[0-9a-f]+) (.*)$/;
+> ---
+> > 				/^([0-9a-f]+) (.*)$/;
+> 78,79c78,79
+> < Ø‹ùº„Ulit(/\n/, $ARGV[2])) {
+> < ˇ‹ùº„U_in_next{$elem->[0]}) {
+> ---
+> > 			} split(/\n/, $ARGV[2])) {
+> > 			if (!exists $not_in_next{$elem->[0]}) {
+> 81c81
+> < Ø‹ùº„U			print STDERR $msg;
+> ---
+> > 					print STDERR $msg;
+> 83c83
+> < >/n^	}
+> ---
+> > 				}
+> 86,87c86,87
+> < ˛Õùº„U		}
+> < ˇ‹ùº„Uster"
+> ---
+> > 		}
+> > 	' "$topic" "$not_in_next" "$not_in_master"
+> 93c93
+> < ?/n^een
+> ---
+> > This sample hook safeguards topic branches that have been
+> 96c96
+> < ‹ùº„Ukflow assumed here is:
+> ---
+> > The workflow assumed here is:
+> 98,99c98,99
+> < ˇ‹ùº„Ur
+> < Ô€ùº„U or indirectly).
+> ---
+> >  * Once a topic branch forks from "master", "master" is never
+> >    merged into it again (either directly or indirectly).
+> 101,105c101,105
+> < Ô€ùº„Us fully cooked and merged into "master",
+> < Ô€ùº„Utop of it to correct
+> < ˇ‹ùº„Ut
+> < Ô€ùº„U strictly necessary, but
+> < ˇ‹ùº„Usier to keep your history simple.
+> ---
+> >  * Once a topic branch is fully cooked and merged into "master",
+> >    it is deleted.  If you need to build on top of it to correct
+> >    earlier mistakes, a new topic branch is created by forking at
+> >    the tip of the "master".  This is not strictly necessary, but
+> >    it makes it easier to keep your history simple.
+> 107,108c107,108
+> < Ô€ùº„Uges to topic
+> < o‹ùº„U"next" branch.
+> ---
+> >  * Whenever you need to test or publish your changes to topic
+> >    branches, merge them into "next" branch.
+> 110,111c110,111
+> < Ô€ùº„Ule, hardcodes the publish branch name
+> < Ô€ùº„Ufigurable via
+> ---
+> > The script, being an example, hardcodes the publish branch name
+> > to be "next", but it is trivial to make it configurable via
+> 114c114
+> < ?/n^:
+> ---
+> > With this workflow, you would want to know:
+> 116,128c116,128
+> < Ô€ùº„U merged to "next".  Young
+> < ˇ‹ùº„Uer
+> < Ô€ùº„Ungs that have not been
+> < Ô€ùº„Uer branches can be easily rebased without
+> < Ô€ùº„Us published, you would
+> < œ›ùº„Uind it.
+> < 
+> < Ô€ùº„Un fully merged to "master".
+> < o‹ùº„Ud not
+> < Ô€ùº„Ule may already want to
+> < o‹ùº„Ur
+> < Ô€ùº„Unges, it is better to
+> < o‹ùº„Ue
+> ---
+> > (1) ... if a topic branch has ever been merged to "next".  Young
+> >     topic branches can have stupid mistakes you would rather
+> >     clean up before publishing, and things that have not been
+> >     merged into other branches can be easily rebased without
+> >     affecting other people.  But once it is published, you would
+> >     not want to rewind it.
+> > 
+> > (2) ... if a topic branch has been fully merged to "master".
+> >     Then you can delete it.  More importantly, you should not
+> >     build on top of it -- other people may already want to
+> >     change things related to the topic as patches against your
+> >     "master", so if you need further changes, it is better to
+> >     fork the topic (perhaps with the same name) afresh from the
+> 131c131
+> < œ›ùº„U example:
+> ---
+> > Let's look at this example:
+> 133,139c133,139
+> < o‹ùº„U--o---o---o "next"
+> < Ø‹ùº„U /           /
+> < ‹ùº„U        /
+> < ‹ùº„U  /
+> < o‹ùº„U  /
+> < o‹ùº„U /
+> < o‹ùº„U
+> ---
+> > 		   o---o---o---o---o---o---o---o---o---o "next"
+> > 		  /       /           /           /
+> > 		 /   a---a---b A     /           /
+> > 		/   /               /           /
+> > 	       /   /   c---c---c---c B         /
+> > 	      /   /   /             \         /
+> > 	     /   /   /   b---b C     \       /
+> 141c141
+> < Ô€ùº„U---o "master"
+> ---
+> >     ---o---o---o---o---o---o---o---o---o---o---o "master"
+> 144c144
+> < ‹ùº„Uhes.
+> ---
+> > A, B and C are topic branches.
+> 146c146
+> < ˇ‹ùº„U up to "next".
+> ---
+> >  * A has one fix since it was merged up to "next".
+> 148c148
+> < ˇ‹ùº„Ut",
+> ---
+> >  * B has finished.  It has been fully merged up to "master" and "next",
+> 151c151
+> < œ›ùº„Uas not merged to "next" at all.
+> ---
+> >  * C has not merged to "next" at all.
+> 153c153
+> < Ô€ùº„Und encourage
+> ---
+> > We would want to allow C to be rebased, refuse A, and encourage
+> 156c156
+> < >/n^(1):
+> ---
+> > To compute (1):
+> 159c159
+> < œ›ùº„Uit rev-list ^master        next
+> ---
+> > 	git rev-list ^master        next
+> 161c161
+> < ?/n^l.
+> ---
+> > 	if these match, topic has not merged in next at all.
+> 165c165
+> < Ø‹ùº„U.topic
+> ---
+> > 	git rev-list master..topic
+> 167c167
+> < o‹ùº„Uged to "master".
+> ---
+> > 	if this is empty, it is fully merged to "master".
+> ============./.git/hooks/pre-receive.sample=============
+> 1c1
+> < +˘ƒa#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,5c3,5
+> < ke use of push options.
+> < ú:V.V 'echoback='
+> < ,˘ƒa the "reject" push option is used.
+> ---
+> > # An example hook script to make use of push options.
+> > # The example simply echoes all push options that start with 'echoback='
+> > # and rejects all pushes when the "reject" push option is used.
+> 7c7
+> < ,˘ƒa-receive".
+> ---
+> > # To enable this hook, rename this file to "pre-receive".
+> 9c9
+> < ‹;V.VOUNT"
+> ---
+> > if test -n "$GIT_PUSH_OPTION_COUNT"
+> 12c12
+> < |:V.V_PUSH_OPTION_COUNT"
+> ---
+> > 	while test "$i" -lt "$GIT_PUSH_OPTION_COUNT"
+> 14c14
+> < :V.VT_PUSH_OPTION_$i"
+> ---
+> > 		eval "value=\$GIT_PUSH_OPTION_$i"
+> 16,17c16,17
+> < +˘ƒaoback=*)
+> < ,˘ƒae-hook: ${value#*=}" >&2
+> ---
+> > 		echoback=*)
+> > 			echo "echo from the pre-receive-hook: ${value#*=}" >&2
+> 20c20
+> < ,˘ƒa		exit 1
+> ---
+> > 			exit 1
+> ============./.git/hooks/push-to-checkout.sample=============
+> 1c1
+> <  =Ó[#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3c3
+> < ate a checked-out tree on a git push.
+> ---
+> > # An example hook script to update a checked-out tree on a git push.
+> 5,8c5,8
+> < !=Ó[) when it reacts to git
+> < the push
+> < °.<∏ªU is currently checked out and the
+> < °.<∏ªU is set to
+> ---
+> > # This hook is invoked by git-receive-pack(1) when it reacts to git
+> > # push and updates reference(s) in its repository, and when the push
+> > # tries to update the branch that is currently checked out and the
+> > # receive.denyCurrentBranch configuration variable is set to
+> 11,17c11,17
+> < °.<∏ªUee and the index
+> < °.<∏ªUy has any difference from the currently
+> < tree and the index match
+> < !=Ó[ushed tip
+> < Q)<∏ªU be used to override the default
+> < Q)<∏ªUe default behaviour
+> < —.<∏ªUfor convenient modification.
+> ---
+> > # By default, such a push is refused if the working tree and the index
+> > # of the remote repository has any difference from the currently
+> > # checked out commit; when both the working tree and the index match
+> > # the current commit, they are updated to match the newly pushed tip
+> > # of the branch. This hook is to be used to override the default
+> > # behaviour; however the code below reimplements the default behaviour
+> > # as a starting point for convenient modification.
+> 19,20c19,20
+> < Q)<∏ªUthe current
+> < .<∏ªUd:
+> ---
+> > # The hook receives the commit with which the tip of the current
+> > # branch is going to be updated:
+> 23,24c23,24
+> < Q)<∏ªUo status to refuse the push (when it does
+> < Q)<∏ªUworking tree).
+> ---
+> > # It can exit with a non-zero status to refuse the push (when it does
+> > # so, it must not modify the index or the working tree).
+> 27c27
+> < !=Ó[it 1
+> ---
+> > 	exit 1
+> 30,48c30,48
+> < Q)<∏ªUnges to the working tree and to the
+> < Q)<∏ªUthe tip of the current
+> < )<∏ªUtatus.
+> < #
+> < Q)<∏ªUy run git read-tree -u -m HEAD "$1"
+> < Q)<∏ªUhe reverse direction
+> < —.<∏ªU
+> < Q)<∏ªUit checkout that switches
+> < !=Ó[tree that do
+> < °.<∏ªUerence between the branches.
+> < 
+> < °.<∏ªUll of the C code
+> < —.<∏ªU in
+> < °.<∏ªUltin/receive-pack.c.
+> < #
+> < !=Ó[ectory,
+> < Q)<∏ªU you want to perform operations on
+> < Q)<∏ªUode accordingly, e.g.
+> < )<∏ªUor using relative paths.
+> ---
+> > # Or it can make any necessary changes to the working tree and to the
+> > # index to bring them to the desired state when the tip of the current
+> > # branch is updated to the new commit, and exit with a zero status.
+> > #
+> > # For example, the hook can simply run git read-tree -u -m HEAD "$1"
+> > # in order to emulate git fetch that is run in the reverse direction
+> > # with git push, as the two-tree form of git read-tree -u -m is
+> > # essentially the same as git switch or git checkout that switches
+> > # branches while keeping the local changes in the working tree that do
+> > # not interfere with the difference between the branches.
+> > 
+> > # The below is a more-or-less exact translation to shell of the C code
+> > # for the default behaviour for git's push-to-checkout hook defined in
+> > # the push_to_deploy() function in builtin/receive-pack.c.
+> > #
+> > # Note that the hook will be executed from the repository directory,
+> > # not from the working tree, so if you want to perform operations on
+> > # the working tree, you will have to adapt your code accordingly, e.g.
+> > # by adding "cd .." or using relative paths.
+> 50,51c50,51
+> < )<∏ªUindex -q --ignore-submodules --refresh
+> <  =Ó[n
+> ---
+> > if ! git update-index -q --ignore-submodules --refresh
+> > then
+> 55c55
+> < !=Ó[ --
+> ---
+> > if ! git diff-files --quiet --ignore-submodules --
+> 57c57
+> < )<∏ªUged changes"
+> ---
+> > 	die "Working directory has unstaged changes"
+> 60c60
+> < q.<∏ªUtion of:
+> ---
+> > # This is a rough translation of:
+> 62,63c62,63
+> < )<∏ªU : EMPTY_TREE_SHA1_HEX
+> < .<∏ªUHEAD 2>/dev/null
+> ---
+> > #   head_has_history() ? "HEAD" : EMPTY_TREE_SHA1_HEX
+> > if git cat-file -e HEAD 2>/dev/null
+> 67c67
+> < !=Ó[null)
+> ---
+> > 	head=$(git hash-object -t tree --stdin </dev/null)
+> 70c70
+> < Q)<∏ªUched --ignore-submodules $head --
+> ---
+> > if ! git diff-index --quiet --cached --ignore-submodules $head --
+> 72,73c72,73
+> < !=Ó[e "Working directory has staged changes"
+> <  =Ó[i
+> ---
+> > 	die "Working directory has staged changes"
+> > fi
+> 76,77c76,77
+> <  =Ó[
+> < !=Ó[w HEAD"
+> ---
+> > then
+> > 	die "Could not update working tree to new HEAD"
+> ============./.git/hooks/commit-msg.sample=============
+> 1c1
+> < †wbW#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,9c3,9
+> < eck the commit log message.
+> < the file
+> < !dpsUhe hook should exit with non-zero
+> < !dpsUt wants to stop the
+> < !dpsU allowed to edit the commit message file.
+> < pdpsU#
+> < !dpsUto "commit-msg".
+> ---
+> > # An example hook script to check the commit log message.
+> > # Called by "git commit" with one argument, the name of the file
+> > # that has the commit message.  The hook should exit with non-zero
+> > # status after issuing an appropriate message if it wants to stop the
+> > # commit.  The hook is allowed to edit the commit message file.
+> > #
+> > # To enable this hook, rename this file to "commit-msg".
+> 11,13c11,13
+> < !dpsU add a Signed-off-by line to the message.
+> < neral, but the prepare-commit-msg
+> < ÅdpsUs more suited to it.
+> ---
+> > # Uncomment the below to add a Signed-off-by line to the message.
+> > # Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+> > # hook is more suited to it.
+> 15,16c15,16
+> < °wbWed-off-by: \1/p')
+> < ëcpsU|| echo "$SOB" >> "$1"
+> ---
+> > # SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+> > # grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+> 18c18
+> < ëcpsUches duplicate Signed-off-by lines.
+> ---
+> > # This example catches duplicate Signed-off-by lines.
+> 20,22c20,22
+> < ëcpsU"" = "$(grep '^Signed-off-by: ' "$1" |
+> < °wbW|| {
+> < ëcpsUes.
+> ---
+> > test "" = "$(grep '^Signed-off-by: ' "$1" |
+> > 	 sort | uniq -c | sed -e '/^[ 	]*1[ 	]/d')" || {
+> > 	echo >&2 Duplicate Signed-off-by lines.
+> ============./.git/hooks/pre-push.sample=============
+> 1c1
+> < ∂FV[#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,5c3,5
+> < w5=?∞U "git
+> < ∑FV[ote status, but before anything has been
+> < ∑FV[zero status nothing will be pushed.
+> ---
+> > # An example hook script to verify what is about to be pushed.  Called by "git
+> > # push" after it has checked the remote status, but before anything has been
+> > # pushed.  If this script exits with a non-zero status nothing will be pushed.
+> 7c7
+> < ∑FV[eters:
+> ---
+> > # This hook is called with the following parameters:
+> 9,10c9,10
+> < ch the push is being done
+> < w5=?∞Uhich the push is being done
+> ---
+> > # $1 -- Name of the remote to which the push is being done
+> > # $2 -- URL to which the push is being done
+> 12c12
+> < ∑FV[nts will be equal.
+> ---
+> > # If pushing without using a named remote those arguments will be equal.
+> 14,15c14,15
+> < ied as lines to
+> < Á5=?∞Ue form:
+> ---
+> > # Information about the commits which are being pushed is supplied as lines to
+> > # the standard input in the form:
+> 17c17
+> < 75=?∞Uote ref> <remote oid>
+> ---
+> > #   <local ref> <local oid> <remote ref> <remote oid>
+> 19,20c19,20
+> < ∑FV[ log message starts
+> < G4=?∞Uprogress).
+> ---
+> > # This sample shows how to prevent push of commits where the log message starts
+> > # with "WIP" (work in progress).
+> 25c25
+> < g2=?∞U-9a-f]' '0')
+> ---
+> > zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+> 27c27
+> < w5=?∞Uid remote_ref remote_oid
+> ---
+> > while read local_ref local_oid remote_ref remote_oid
+> 29c29
+> < G4=?∞Ual_oid" = "$zero"
+> ---
+> > 	if test "$local_oid" = "$zero"
+> 32c32
+> < w$=?∞U		:
+> ---
+> > 		:
+> 34c34
+> < ó5=?∞U"
+> ---
+> > 		if test "$remote_oid" = "$zero"
+> 36c36
+> < ó5=?∞Uits
+> ---
+> > 			# New branch, examine all commits
+> 39c39
+> < ∑FV[
+> ---
+> > 			# Update to existing branch, examine new commits
+> 43,45c43,45
+> < ó5=?∞U		# Check for WIP commit
+> < w5=?∞Uv-list -n 1 --grep '^WIP' "$range")
+> < ∂FV[est -n "$commit"
+> ---
+> > 		# Check for WIP commit
+> > 		commit=$(git rev-list -n 1 --grep '^WIP' "$range")
+> > 		if test -n "$commit"
+> 47,48c47,48
+> < g2=?∞U WIP commit in $local_ref, not pushing"
+> < ∑FV[	exit 1
+> ---
+> > 			echo >&2 "Found WIP commit in $local_ref, not pushing"
+> > 			exit 1
+> ============./.git/hooks/pre-merge-commit.sample=============
+> 0a1,13
+> > #!/bin/sh
+> > #
+> > # An example hook script to verify what is about to be committed.
+> > # Called by "git merge" with no arguments.  The hook should
+> > # exit with non-zero status after issuing an appropriate message to
+> > # stderr if it wants to stop the merge commit.
+> > #
+> > # To enable this hook, rename this file to "pre-merge-commit".
+> > 
+> > . git-sh-setup
+> > test -x "$GIT_DIR/hooks/pre-commit" &&
+> >         exec "$GIT_DIR/hooks/pre-commit"
+> > :
+> ============./.git/hooks/pre-applypatch.sample=============
+> 1c1
+> < Sî“V#!/bin/sh
+> ---
+> > #!/bin/sh
+> 3,4c3,4
+> < rify what is about to be committed
+> < plypatch from an e-mail message.
+> ---
+> > # An example hook script to verify what is about to be committed
+> > # by applypatch from an e-mail message.
+> 6,7c6,7
+> < Tî“V issuing an
+> < §◊óhUnts to stop the commit.
+> ---
+> > # The hook should exit with non-zero status after issuing an
+> > # appropriate message if it wants to stop the commit.
+> 9c9
+> < §◊óhU".
+> ---
+> > # To enable this hook, rename this file to "pre-applypatch".
+> 12,13c12,13
+> < Tî“Vrse --git-path hooks/pre-commit)"
+> < Tî“V}
+> ---
+> > precommit="$(git rev-parse --git-path hooks/pre-commit)"
+> > test -x "$precommit" && exec "$precommit" ${1+"$@"}
+> ============./.git/description=============
+> 1c1
+> < ption' to name the repository.
+> ---
+> > Unnamed repository; edit this file 'description' to name the repository.
+> ============./.git/refs/heads/master=============
+> 1c1
+> < l©e_68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+> ---
+> > 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+> ============./.git/refs/remotes/origin/HEAD=============
+> 1c1
+> <  DπZref: refs/remotes/origin/master
+> ---
+> > ref: refs/remotes/origin/master
+> ============./.git/refs/remotes/origin/master=============
+> 1c1
+> < J°}U68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+> ---
+> > 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709
+> ============./.git/HEAD=============
+> 0a1
+> > ref: refs/heads/master
+> ============./.git/config=============
+> 1c1
+> < ·0É\[core]
+> ---
+> > [core]
+> 3c3
+> < ‚0É\ode = true
+> ---
+> > 	filemode = true
+> 5c5
+> < çoÕU = true
+> ---
+> > 	logallrefupdates = true
+> 7,9c7,9
+> < b.com:Aghlimi/get_next_line.git
+> < ‚0É\refs/heads/*:refs/remotes/origin/*
+> < ‚0É\ "master"]
+> ---
+> > 	url = git@github.com:Aghlimi/get_next_line.git
+> > 	fetch = +refs/heads/*:refs/remotes/origin/*
+> > [branch "master"]
+> 11,12c11,12
+> < ¬çoÕUheads/master
+> < ‚0É\aster
+> ---
+> > 	merge = refs/heads/master
+> > 	vscode-merge-base = origin/master
+> ============./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.pack=============
+> Binary files t and ./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.pack differ
+> ============./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.idx=============
+> Binary files t and ./.git/objects/pack/pack-59a585d9ab01e3ebba0bf32b3d867758c27037d0.idx differ
+> ============./.git/objects/67/2dc18b1458edbdf479ec52833f19d66952cd90=============
+> Binary files t and ./.git/objects/67/2dc18b1458edbdf479ec52833f19d66952cd90 differ
+> ============./.git/objects/a1/0e639d7bcc841aa4f642377829be2d1f653291=============
+> Binary files t and ./.git/objects/a1/0e639d7bcc841aa4f642377829be2d1f653291 differ
+> ============./.git/objects/54/1f01ec309e4f0f21ad1a90fd4e67d02e84789c=============
+> Binary files t and ./.git/objects/54/1f01ec309e4f0f21ad1a90fd4e67d02e84789c differ
+> ============./.git/objects/0a/942ddf4444be79684af080e3c6762717cb787b=============
+> 1,2c1,2
+> < Ïµ-Î¡U,<8
+> < –{>5πX¸±qd${0iÔÏ˙ø`J]Í˜{y∑ÈÀ8ÛÆ„GÙ
+> \ No newline at end of file
+> ---
+> > xùŒA¬ Öa◊úÇΩâôÅictÂ9¶0XiMÉ˜W{woıΩ?≠≠’n¡°o™v ,Äö<D•≈°dî%ìéú¡i 1ôól∫tŸ%eÙ,<8
+> > A\pP"≈Ã”‰eî1qF#Ô>ØõΩÕM≥Ωœœ⁄™=Àc◊‰7z!ú–{>5πX¸±qd${0iÔÏ˙ø`J]Í˜{y∑ÈÀ8ÛÆ„GÙ
+> \ No newline at end of file
+> ============./.git/objects/73/a4a298fa8a4e51ace68fe8fc0ea5f5f2df0af1=============
+> Binary files t and ./.git/objects/73/a4a298fa8a4e51ace68fe8fc0ea5f5f2df0af1 differ
+> ============./.git/objects/5c/69b5cc155382176bda31a2b349fd1a5cd05c82=============
+> Binary files t and ./.git/objects/5c/69b5cc155382176bda31a2b349fd1a5cd05c82 differ
+> ============./.git/objects/e1/15844c12b529c5a53825dc953aa7ea91593745=============
+> Binary files t and ./.git/objects/e1/15844c12b529c5a53825dc953aa7ea91593745 differ
+> ============./.git/objects/3f/e4f4db0d6ce8c145455c2a671fe99e350355f3=============
+> Binary files t and ./.git/objects/3f/e4f4db0d6ce8c145455c2a671fe99e350355f3 differ
+> ============./.git/objects/cf/8a7e9aa19c0c72b3d023436b70ff510e4a44d4=============
+> Binary files t and ./.git/objects/cf/8a7e9aa19c0c72b3d023436b70ff510e4a44d4 differ
+> ============./.git/objects/68/c84f03c93558ba7a3f0a0e1d8642e1ad13a709=============
+> 1,2c1,2
+> < BW„[xùŒA
+> < âb_ıÍ1päÁÅ}‡Ï¯lÂ¡uù˚1wB‡
+> \ No newline at end of file
+> ---
+> > xùŒA
+> > ¬0@Q◊9EˆÖ2ìô1àË sL'©-[Jºø“#∏˚´«∑µ÷•˘‚©Ì•xõç%©b2∞F àÈ<Fò&A(¨Ãô›¶{y7_e`6£Ñd¢BCêlIHê&îDë≈ÈßÕÎÓÔs-Ÿ?Ê◊R—Á7£ù7Ñâb_ıÍ1päÁÅ}‡Ï¯lÂ¡uù˚1wB‡
+> \ No newline at end of file
+> ============./.git/packed-refs=============
+> 1,2c1,2
+> < äÙÁZed 
+> < d1 refs/remotes/origin/master
+> ---
+> > # pack-refs with: peeled fully-peeled sorted 
+> > 97304ce7137a752488a2820f949d7bb3a6a6c7d1 refs/remotes/origin/master
+> ============./.git/logs/refs/remotes/origin/HEAD=============
+> 1c1
+> < /get_next_line.git
+> ---
+> > 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+> ============./.git/logs/refs/remotes/origin/master=============
+> 1,3c1,3
+> < 96720 +0100	update by push
+> < uıÄõVate by push
+> < ı¶Ôa37.ma> 1730497691 +0100	update by push
+> ---
+> > 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496720 +0100	update by push
+> > 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496925 +0100	update by push
+> > e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497691 +0100	update by push
+> ============./.git/logs/refs/heads/master=============
+> 1,5c1,4
+> < /get_next_line.git
+> < ß
+> < x˚ÀUied number 2
+> < 'yÍ\337.ma> 1730496917 +0100	commit: finished
+> < 'yÍ\97684 +0100	commit: ++
+> ---
+> > 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+> > 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496714 +0100	commit: finied number 2
+> > 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496917 +0100	commit: finished
+> > e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497684 +0100	commit: ++
+> ============./.git/logs/HEAD=============
+> 1,4c1,4
+> < /get_next_line.git
+> < ˝ıvMÙUied number 2
+> < }&_337.ma> 1730496917 +0100	commit: finished
+> < }&_97684 +0100	commit: ++
+> ---
+> > 0000000000000000000000000000000000000000 97304ce7137a752488a2820f949d7bb3a6a6c7d1 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496594 +0100	clone: from github.com:Aghlimi/get_next_line.git
+> > 97304ce7137a752488a2820f949d7bb3a6a6c7d1 0a942ddf4444be79684af080e3c6762717cb787b Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496714 +0100	commit: finied number 2
+> > 0a942ddf4444be79684af080e3c6762717cb787b e115844c12b529c5a53825dc953aa7ea91593745 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730496917 +0100	commit: finished
+> > e115844c12b529c5a53825dc953aa7ea91593745 68c84f03c93558ba7a3f0a0e1d8642e1ad13a709 Ahmed Ghlimi <aghlimi@c3r4p10.1337.ma> 1730497684 +0100	commit: ++
+> ============./.git/index=============
+> Binary files t and ./.git/index differ
+> ============./.git/COMMIT_EDITMSG=============
+> 1c1
+> < †Ù%X++
+> ---
+> > ++
+> ============./.vscode/settings.json=============
+> 0a1,59
+> > {
+> >   "C_Cpp_Runner.cCompilerPath": "gcc",
+> >   "C_Cpp_Runner.cppCompilerPath": "g++",
+> >   "C_Cpp_Runner.debuggerPath": "gdb",
+> >   "C_Cpp_Runner.cStandard": "",
+> >   "C_Cpp_Runner.cppStandard": "",
+> >   "C_Cpp_Runner.msvcBatchPath": "",
+> >   "C_Cpp_Runner.useMsvc": false,
+> >   "C_Cpp_Runner.warnings": [
+> >     "-Wall",
+> >     "-Wextra",
+> >     "-Wpedantic",
+> >     "-Wshadow",
+> >     "-Wformat=2",
+> >     "-Wcast-align",
+> >     "-Wconversion",
+> >     "-Wsign-conversion",
+> >     "-Wnull-dereference"
+> >   ],
+> >   "C_Cpp_Runner.msvcWarnings": [
+> >     "/W4",
+> >     "/permissive-",
+> >     "/w14242",
+> >     "/w14287",
+> >     "/w14296",
+> >     "/w14311",
+> >     "/w14826",
+> >     "/w44062",
+> >     "/w44242",
+> >     "/w14905",
+> >     "/w14906",
+> >     "/w14263",
+> >     "/w44265",
+> >     "/w14928"
+> >   ],
+> >   "C_Cpp_Runner.enableWarnings": true,
+> >   "C_Cpp_Runner.warningsAsError": false,
+> >   "C_Cpp_Runner.compilerArgs": [],
+> >   "C_Cpp_Runner.linkerArgs": [],
+> >   "C_Cpp_Runner.includePaths": [],
+> >   "C_Cpp_Runner.includeSearch": [
+> >     "*",
+> >     "**/*"
+> >   ],
+> >   "C_Cpp_Runner.excludeSearch": [
+> >     "**/build",
+> >     "**/build/**",
+> >     "**/.*",
+> >     "**/.*/**",
+> >     "**/.vscode",
+> >     "**/.vscode/**"
+> >   ],
+> >   "C_Cpp_Runner.useAddressSanitizer": false,
+> >   "C_Cpp_Runner.useUndefinedSanitizer": false,
+> >   "C_Cpp_Runner.useLeakSanitizer": false,
+> >   "C_Cpp_Runner.showCompilationTime": false,
+> >   "C_Cpp_Runner.useLinkTimeOptimization": false,
+> >   "C_Cpp_Runner.msvcSecureNoWarnings": false
+> > }
+> \ No newline at end of file
+> ============./.vscode/launch.json=============
+> 1c1
+> <  öÀa{
+> ---
+> > {
+> 3c3
+> <  öÀa: [
+> ---
+> >   "configurations": [
+> 5c5
+> < ug Session",
+> ---
+> >       "name": "C/C++ Runner: Debug Session",
+> 7c7
+> < ã)gÿV "request": "launch",
+> ---
+> >       "request": "launch",
+> 9,14c9,14
+> < ÀöÀa    "stopAtEntry": false,
+> < €)gÿVonsole": false,
+> < i/Desktop/cursus/get_next_line",
+> < next_line/build/Debug/outDebug",
+> < ÀöÀaMode": "gdb",
+> < €)gÿV",
+> ---
+> >       "stopAtEntry": false,
+> >       "externalConsole": false,
+> >       "cwd": "/home/aghlimi/Desktop/cursus/get_next_line",
+> >       "program": "/home/aghlimi/Desktop/cursus/get_next_line/build/Debug/outDebug",
+> >       "MIMode": "gdb",
+> >       "miDebuggerPath": "gdb",
+> 17,19c17,19
+> < ÀöÀang for gdb",
+> < ˚.gÿVetty-printing",
+> < €)gÿV: true
+> ---
+> >           "description": "Enable pretty-printing for gdb",
+> >           "text": "-enable-pretty-printing",
+> >           "ignoreFailures": true
+> ============./.vscode/c_cpp_properties.json=============
+> 1c1
+> < ßJ_{
+> ---
+> > {
+> 4c4
+> < : "linux-gcc-x64",
+> ---
+> >       "name": "linux-gcc-x64",
+> 6c6
+> < ®J_        "${workspaceFolder}/**"
+> ---
+> >         "${workspaceFolder}/**"
+> 8,12c8,12
+> < ®J_     "compilerPath": "/usr/bin/gcc",
+> < ®J_ "cStandard": "${default}",
+> < Ë…¨;ıUdard": "${default}",
+> < de": "linux-gcc-x64",
+> < Ë…¨;ıU: [
+> ---
+> >       "compilerPath": "/usr/bin/gcc",
+> >       "cStandard": "${default}",
+> >       "cppStandard": "${default}",
+> >       "intelliSenseMode": "linux-gcc-x64",
+> >       "compilerArgs": [
+> 17c17
+> < ®J_on": 4
+> ---
+> >   "version": 4
+> ============./tester.sh=============
+> 1c1
+> < ‹V#!/usr/bin/bash
+> ---
+> > #!/usr/bin/bash
+> 3c3
+> < ‹V -rf tests.txt
+> ---
+> > rm -rf tests.txt
+> 5c5
+> <  tests.txt
+> ---
+> >     echo ============$item============= >> tests.txt
+> 7c7
+> < HíÃóhUt $item >> tests.txt
+228,237c2077,2078
+< äﬁÚà˜U */
+< äﬁÚà˜U*/
+< äﬁÚà˜U/
+< ⁄ÿÚà˜U
+< ˙}-_               +:+ +:+         +:+     */
+< ˙}-_a>          +#+  +:+       +#+        */
+< ˙}-_         +#+#+#+#+#+   +#+           */
+< ˙}-_mi           #+#    #+#             */
+< ˙}-_i          ###   ########.fr       */
+< ˙}-_                          
+\ No newline at end of file
+---
+> >     diff t $item >> tests.txt
+> ============./tests.txt=============
+============./main.c=============
+0a1,16
+> #include <unistd.h>
+> #include <stdio.h>
+> #include <fcntl.h>
+> #include "get_next_line.h"
+> int main(int argc, char const *argv[])
+> {
+>     int fd = open(argv[1],O_RDONLY);
+>     char* line;
+>     while (line = get_next_line(fd))
+>     {
+>         printf("%s",line);
+>         free(line);
+>     }
+>     
+>     return 0;
+> }
+============./a.out=============
+Binary files t and ./a.out differ
