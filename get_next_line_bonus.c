@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 19:47:24 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/06 16:13:24 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/06 17:50:46 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	ft_fromnl(char *buffer)
 {
@@ -58,18 +58,20 @@ char	*ft_read(int fd, char *buffer, char *result)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE + 1];
+	static char	buffer[MAX_FD][BUFFER_SIZE + 1];
 	char		*result;
 
 	result = NULL;
-	if (ft_str_len(buffer))
+	if (fd < 0)
+		return (NULL);
+	if (ft_str_len(buffer[fd]))
 	{
-		result = ft_tonl(buffer);
+		result = ft_tonl(buffer[fd]);
 		if (!result)
 			return (NULL);
-		ft_fromnl(buffer);
+		ft_fromnl(buffer[fd]);
 	}
 	if ((result && result[ft_str_len(result) - 1] != '\n') || !result)
-		result = ft_read(fd, buffer, result);
+		result = ft_read(fd, buffer[fd], result);
 	return (result);
 }
