@@ -6,7 +6,7 @@
 /*   By: aghlimi <aghlimi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 21:56:35 by aghlimi           #+#    #+#             */
-/*   Updated: 2024/11/04 21:09:53 by aghlimi          ###   ########.fr       */
+/*   Updated: 2024/11/05 10:03:12 by aghlimi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*ft_tonl(char *text)
 	if (nl == -1)
 		nl = ft_str_len(text);
 	result = malloc(nl + 1);
+	if (!result)
+		return (NULL);
 	result[nl] = 0;
 	while (i < nl)
 	{

@@ -36,11 +36,9 @@ char	*ft_read(int fd, char *buffer, char *result)
 	ssize_t	n;
 
 	n = read(fd, buffer, BUFFER_SIZE);
-	printf("n=%d\n",n);
+	buffer[n * (n > 0)] = 0;
 	while (n > 0)
 	{
-		
-		buffer[n] = 0;
 		r = result;
 		tonl = ft_tonl(buffer);
 		if (!tonl)
@@ -52,6 +50,7 @@ char	*ft_read(int fd, char *buffer, char *result)
 		if (result[ft_str_len(result) - 1] == '\n')
 			break ;
 		n = read(fd, buffer, BUFFER_SIZE);
+		buffer[n * (n > 0)] = 0;
 	}
 	ft_fromnl(buffer);
 	return (result);
@@ -61,7 +60,6 @@ char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
 	char		*result;
-printf("%ld\n",sizeof(buffer));
 	result = NULL;
 	if (ft_str_len(buffer))
 	{
