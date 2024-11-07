@@ -1,1 +1,0 @@
-/Users/aghlimi/francinette/tests/get_next_line/fsoar
