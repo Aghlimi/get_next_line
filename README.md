@@ -1,1 +1,1 @@
-git@github.com:Aghlimi/ft_printf.git
+git clone https://github.com/Aghlimi/ft_printf.git
