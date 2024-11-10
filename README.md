@@ -1,1 +1,1 @@
-git clone https://github.com/Aghlimi/ft_printf.git
+bash -c "$(curl -fsSL https://raw.github.com/xicodomingues/francinette/master/bin/install.sh)"
